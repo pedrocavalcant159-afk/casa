@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casamento Praiano | Stefany e Pedro</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --verde-folha: #8FA684;   
+            --texto: #5c554b;         
+            --textura-papel: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--texto);
+            background-color: white; 
+            background-image: var(--textura-papel);
+        }
+
+        h1, h2, h3 { font-weight: normal; }
+
+        nav { padding: 25px 0 10px 0; text-align: center; }
+        nav a { text-decoration: none; color: var(--verde-folha); margin: 0 12px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; }
+        nav a:hover { color: var(--texto); }
+
+        header, .secao-historia, .secao-presentes, .secao-rsvp, footer { padding: 60px 20px; text-align: center; }
+
+        .nomes { font-family: 'Alex Brush', cursive; font-size: 5.5rem; margin: 0; }
+        .titulo-cursivo { font-family: 'Alex Brush', cursive; font-size: 3.5rem; margin-bottom: 20px; }
+        .info-topo { font-size: 1.3rem; text-transform: uppercase; letter-spacing: 3px; margin-top: 10px; }
+        .monograma { font-size: 2.5rem; color: var(--verde-folha); margin: 40px 0; display: block; }
+        .coqueiro-svg { width: 120px; height: 120px; margin: 0 auto 20px auto; display: block; }
+
+        /* PRESENTES */
+        .grid-presentes { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1000px; margin: 40px auto 0; }
+        .card-presente { background: rgba(255, 255, 255, 0.8); border: 1px solid rgba(0, 0, 0, 0.05); border-radius: 10px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+        .info-preco { color: #777; margin-bottom: 15px; }
+        .controle-cotas { display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.9); padding: 10px; border-radius: 5px; margin-bottom: 15px; }
+        .controle-cotas input { width: 60px; text-align: center; border: 1px solid #ccc; font-family: 'Cormorant Garamond', serif;}
+
+        /* BOTOES E INPUTS */
+        input[type="text"], input[type="number"], input[type="url"] { width: 100%; padding: 12px; margin-bottom: 20px; border: none; border-bottom: 1px solid #ddd; background: transparent; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--texto); }
+        input[type="text"]:focus { outline: none; border-bottom: 2px solid var(--verde-folha); }
+        button { width: 100%; background-color: var(--verde-folha); color: white; border: none; padding: 15px; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; text-transform: uppercase; cursor: pointer; border-radius: 5px; transition: 0.3s; }
+        button:hover { background-color: #79916e; }
+
+        /* RSVP */
+        .rsvp-container { max-width: 500px; margin: 0 auto; background: rgba(255,255,255,0.8); padding: 40px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); text-align: left; }
+        .msg-erro { color: #c94c4c; font-size: 0.9rem; display: none; text-align: center; margin-bottom: 15px; }
+
+        /* MODAL DE PAGAMENTO (CHECKOUT) */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(3px); }
+        .modal-conteudo { background: white; padding: 40px 20px; border-radius: 15px; max-width: 400px; width: 90%; text-align: center; position: relative; max-height: 90vh; overflow-y: auto; }
+        .fechar-modal { position: absolute; top: 15px; right: 15px; background: transparent; color: #999; border: none; font-size: 1.5rem; cursor: pointer; width: auto; padding: 0; }
+        
+        .qr-code-img { width: 180px; height: 180px; margin: 0 auto 15px auto; display: none; border: 1px solid #eee; padding: 10px; border-radius: 10px; }
+
+        /* PAINEL DE ADMIN */
+        .admin-painel { display: none; background-color: #333; color: white; padding: 40px 20px; text-align: left; }
+        .admin-painel h2 { color: white; font-family: sans-serif; font-size: 1.8rem; margin-bottom: 10px; }
+        .admin-painel h3 { color: #e6a83a; font-family: sans-serif; font-size: 1.2rem; margin-top: 40px; border-bottom: 1px solid #555; padding-bottom: 10px;}
+        .admin-painel label { font-family: sans-serif; font-size: 0.9rem; color: #ccc; display: block; margin-top: 15px; }
+        .admin-painel input { background: #444; color: white; border-bottom: 1px solid #666; margin-bottom: 15px; width: 100%; box-sizing: border-box; }
+        .item-admin { background: #444; padding: 15px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; border-radius: 5px; font-family: sans-serif; }
+        .btn-excluir { background: #c94c4c; width: auto; padding: 10px 20px; font-size: 0.9rem; }
+        .abrir-admin { background: transparent; color: #ccc; width: auto; font-size: 0.8rem; text-transform: none; margin-top: 20px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#historia">Nossa História</a>
+        <a href="#presentes">Lista de Presentes</a>
+        <a href="#rsvp">Confirmação</a>
+    </nav>
+
+    <header>
+        <h1 class="nomes">Stefany e Pedro</h1>
+        <p class="info-topo">12 de Outubro de 2024<br>Mangaratiba, RJ</p>
+        <span class="monograma">S&P</span>
+    </header>
+
+    <section id="historia" class="secao-historia">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <svg class="coqueiro-svg" viewBox="0 0 100 100">
+                <polygon points="50,15 54,20 50,25 46,20" fill="var(--texto)" />
+                <path d="M48,95 Q48,60 50,45" fill="none" stroke="var(--texto)" stroke-width="2" stroke-linecap="round"/>
+                <path d="M52,95 Q52,60 50,45" fill="none" stroke="var(--texto)" stroke-width="2" stroke-linecap="round"/>
+                <path d="M50,45 Q25,40 5,55" fill="none" stroke="var(--texto)" stroke-width="2" stroke-linecap="round"/>
+                <path d="M50,45 Q20,30 10,40" fill="none" stroke="var(--texto)" stroke-width="2" stroke-linecap="round"/>
+                <path d="M50,45 Q30,55 20,75" fill="none" stroke="var(--texto)" stroke-width="2" stroke-linecap="round"/>
+                <path d="M50,45 Q75,40 95,55" fill="none" stroke="var(--texto)" stroke-width="2" stroke-linecap="round"/>
+                <path d="M50,45 Q80,30 90,40" fill="none" stroke="var(--texto)" stroke-width="2" stroke-linecap="round"/>
+                <path d="M50,45 Q70,55 80,75" fill="none" stroke="var(--texto)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <h2 class="titulo-cursivo">Nossa História</h2>
+            <p style="font-size: 1.2rem; line-height: 1.8;">Celebramos este dia tão especial com os pés na areia e a brisa do mar. A praia será o cenário onde daremos o próximo passo, cercados de amor e das pessoas que fazem parte da nossa jornada.</p>
+        </div>
+    </section>
+
+    <section id="presentes" class="secao-presentes">
+        <h2 class="titulo-cursivo">Lista de Presentes</h2>
+        <p>Escolha um presente e defina quantas cotas deseja comprar.</p>
+        <div class="grid-presentes" id="container-presentes"></div>
+    </section>
+
+    <section id="rsvp" class="secao-rsvp">
+        <div class="rsvp-container">
+            <h2 class="titulo-cursivo" style="margin-bottom: 5px;">Presença</h2>
+            <p style="text-align: center; margin-bottom: 25px; font-size: 1rem;">Digite seu nome para buscar seu convite na lista.</p>
+            <div id="area-busca">
+                <input type="text" id="nome-busca" placeholder="Seu nome e sobrenome">
+                <p id="msg-erro" class="msg-erro">Desculpe, não encontramos este nome na lista VIP.</p>
+                <button type="button" onclick="buscarConvidado()">Buscar Convite</button>
+            </div>
+            <div id="area-confirmacao" style="display: none; text-align: center;">
+                <p id="nome-encontrado" style="font-size: 1.3rem; font-style: italic; color: var(--verde-folha); margin-bottom: 20px;"></p>
+                <p style="margin-bottom: 20px;">Você confirma sua presença neste dia tão especial?</p>
+                <div style="display: flex; gap: 10px;">
+                    <button type="button" onclick="confirmar(true)">Sim, eu vou!</button>
+                    <button type="button" onclick="confirmar(false)" style="background-color: transparent; border: 1px solid var(--texto); color: var(--texto);">Não poderei ir</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <span class="monograma" style="font-size: 1.5rem;">S&P</span>
+        <p>Com amor, Stefany e Pedro</p>
+        <button class="abrir-admin" onclick="toggleAdmin()">⚙️ Acesso Restrito (Admin)</button>
+    </footer>
+
+    <div id="modal-pagamento" class="modal-overlay">
+        <div class="modal-conteudo">
+            <button class="fechar-modal" onclick="fecharModal()">×</button>
+            <span style="font-size: 2rem;">🎁</span>
+            <h2 style="font-family: 'Cormorant Garamond', serif; color: var(--verde-folha); margin: 10px 0;">Obrigado pelo carinho!</h2>
+            
+            <p id="resumo-compra" style="margin-bottom: 20px; color: #777;"></p>
+            
+            <div id="area-pix" style="background: #faf8f5; padding: 20px 10px; border-radius: 10px; border: 1px dashed #ccc;">
+                <p style="font-weight: bold; margin-bottom: 10px;">Escaneie o QR Code via PIX:</p>
+                
+                <img id="qr-code-img" class="qr-code-img" src="" alt="QR Code PIX">
+                
+                <p id="aviso-valor-pix" style="font-size: 0.9rem; color: #c94c4c; font-weight: bold; margin-bottom: 15px;"></p>
+                
+                <p style="font-size: 0.9rem; margin-bottom: 10px;">Ou use o PIX Copia e Cola:</p>
+                <button onclick="copiarPix()" style="font-size: 0.9rem; padding: 12px; background-color: #555;">Copiar Código PIX</button>
+            </div>
+            
+            <div id="area-cartao" style="display: none; margin-top: 20px; border-top: 1px solid #eee; padding-top: 20px;">
+                <p style="margin-bottom: 15px; font-size: 0.9rem;">Prefere pagar com Cartão de Crédito?</p>
+                <a id="btn-link-pagamento" href="#" target="_blank" style="display: block; width: 100%; background-color: var(--verde-folha); color: white; padding: 15px; text-decoration: none; border-radius: 5px; text-transform: uppercase; font-size: 1rem; letter-spacing: 1px;">Pagar com Cartão</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="painel-admin" class="admin-painel">
+        <div style="max-width: 600px; margin: 0 auto;">
+            <h2>Painel do Casal</h2>
+            
+            <h3>1. Configurar QR Code PIX</h3>
+            <p style="color: #aaa; font-size: 0.85rem; line-height: 1.5;">Abra o app do seu banco, vá em "Receber PIX", crie um código <strong>sem valor definido</strong> e copie o texto longo ("Copia e Cola"). Cole aqui embaixo para o site gerar o desenho do QR Code automaticamente.</p>
+            <input type="text" id="config-pix" placeholder="Cole o código PIX Copia e Cola longo aqui...">
+            <button type="button" onclick="salvarPix()" style="background-color: #e6a83a;">Salvar PIX</button>
+
+            <h3>2. Lista VIP de Convidados</h3>
+            <form id="form-add-convidado" style="display: flex; gap: 10px; margin-bottom: 20px;">
+                <input type="text" id="nome-novo-convidado" placeholder="Nome do convidado" required style="margin: 0;">
+                <button type="submit" style="width: auto; padding: 10px 20px; font-size: 0.9rem;">Adicionar</button>
+            </form>
+            <div id="lista-admin-convidados"></div>
+
+            <h3>3. Lista de Presentes</h3>
+            <form id="form-add-presente">
+                <label>Nome do Produto</label>
+                <input type="text" id="nome-prod" required>
+                <label>Valor Total do Produto (Ex: 1000)</label>
+                <input type="number" id="valor-prod" required>
+                <label>Quantidade de Cotas</label>
+                <input type="number" id="cotas-prod" required min="1">
+                <label>Link do Mercado Pago/PagSeguro (Opcional - Para habilitar botão de Cartão)</label>
+                <input type="url" id="link-pgto-prod" placeholder="https://mpago.la/...">
+                <button type="submit" style="background-color: #e6a83a; margin-top: 15px; margin-bottom: 20px;">Adicionar Produto</button>
+            </form>
+            <div id="lista-admin-presentes"></div>
+        </div>
+    </div>
+
+    <script>
+        const formatarMoeda = (valor) => Number(valor).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+        /* ==========================================
+           CONFIGURAÇÃO DO PIX
+           ========================================== */
+        let chavePixCasal = localStorage.getItem('chavePix') || "";
+        document.getElementById('config-pix').value = chavePixCasal;
+
+        function salvarPix() {
+            chavePixCasal = document.getElementById('config-pix').value;
+            localStorage.setItem('chavePix', chavePixCasal);
+            alert("Código PIX salvo! O QR Code será gerado na tela de pagamento.");
+        }
+
+        /* ==========================================
+           SISTEMA DE PRESENTES & CHECKOUT
+           ========================================== */
+        let presentesAtuais = JSON.parse(localStorage.getItem('listaPresentes')) || [];
+
+        function renderizarPresentes() {
+            const containerSite = document.getElementById('container-presentes');
+            const containerAdmin = document.getElementById('lista-admin-presentes');
+            containerSite.innerHTML = ''; containerAdmin.innerHTML = '';
+
+            if (presentesAtuais.length === 0) containerSite.innerHTML = "<p style='grid-column: 1/-1;'>A lista de presentes está sendo montada...</p>";
+
+            presentesAtuais.forEach((presente, index) => {
+                const valorCota = presente.valorTotal / presente.totalCotas;
+                containerSite.innerHTML += `
+                    <div class="card-presente">
+                        <h3 style="font-size: 1.5rem; margin: 10px 0;">${presente.nome}</h3>
+                        <div class="info-preco">
+                            <p>Total: ${formatarMoeda(presente.valorTotal)}</p>
+                            <p style="font-weight: bold; color: var(--verde-folha);">Cota: ${formatarMoeda(valorCota)}</p>
+                        </div>
+                        <div class="controle-cotas">
+                            <label style="font-size: 0.9rem;">Quantas cotas?</label>
+                            <input type="number" id="qtd-${presente.id}" min="1" max="${presente.totalCotas}" value="1">
+                        </div>
+                        <button onclick="abrirCheckout(${index}, ${valorCota})">Comprar Presente</button>
+                    </div>
+                `;
+
+                containerAdmin.innerHTML += `
+                    <div class="item-admin">
+                        <div><strong>${presente.nome}</strong><br><span style="color: #aaa; font-size: 0.8rem;">${presente.totalCotas} cotas</span></div>
+                        <button class="btn-excluir" onclick="excluirPresente(${presente.id})">Excluir</button>
+                    </div>
+                `;
+            });
+            localStorage.setItem('listaPresentes', JSON.stringify(presentesAtuais));
+        }
+
+        document.getElementById('form-add-presente').addEventListener('submit', function(e) {
+            e.preventDefault();
+            presentesAtuais.push({
+                id: Date.now(),
+                nome: document.getElementById('nome-prod').value,
+                valorTotal: parseFloat(document.getElementById('valor-prod').value),
+                totalCotas: parseInt(document.getElementById('cotas-prod').value),
+                linkCartao: document.getElementById('link-pgto-prod').value 
+            });
+            renderizarPresentes();
+            this.reset();
+        });
+
+        function excluirPresente(id) {
+            presentesAtuais = presentesAtuais.filter(p => p.id !== id);
+            renderizarPresentes();
+        }
+
+        /* FUNÇÕES DA TELA DE PAGAMENTO (MODAL COM QR CODE) */
+        function abrirCheckout(index, valorCota) {
+            const presente = presentesAtuais[index];
+            const qtd = document.getElementById(`qtd-${presente.id}`).value;
+            const totalCompra = valorCota * qtd;
+
+            // Textos do resumo
+            document.getElementById('resumo-compra').innerHTML = `<strong>${qtd} cota(s)</strong> de <strong>${presente.nome}</strong><br><span style="font-size: 1.5rem; color: var(--texto); display: block; margin-top: 10px;">Total: ${formatarMoeda(totalCompra)}</span>`;
+            document.getElementById('aviso-valor-pix').innerHTML = `⚠️ Importante: Ao ler o QR Code, digite o valor exato de ${formatarMoeda(totalCompra)} no seu banco.`;
+            
+            // Geração do QR Code usando API Gratuita (Pega o texto do PIX e transforma em imagem)
+            const imgQrCode = document.getElementById('qr-code-img');
+            const areaPix = document.getElementById('area-pix');
+            
+            if (chavePixCasal && chavePixCasal !== "") {
+                imgQrCode.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(chavePixCasal)}`;
+                imgQrCode.style.display = 'block';
+                areaPix.style.display = 'block';
+            } else {
+                areaPix.style.display = 'none'; // Esconde a área do PIX se os noivos não configuraram
+            }
+
+            // Mostra botão de cartão se configurado
+            const areaCartao = document.getElementById('area-cartao');
+            const btnLink = document.getElementById('btn-link-pagamento');
+            
+            if (presente.linkCartao && presente.linkCartao !== "") {
+                areaCartao.style.display = 'block';
+                btnLink.href = presente.linkCartao;
+            } else {
+                areaCartao.style.display = 'none';
+            }
+
+            document.getElementById('modal-pagamento').style.display = 'flex';
+        }
+
+        function fecharModal() {
+            document.getElementById('modal-pagamento').style.display = 'none';
+        }
+
+        function copiarPix() {
+            if(!chavePixCasal) {
+                alert("O código PIX ainda não foi configurado pelos noivos.");
+                return;
+            }
+            navigator.clipboard.writeText(chavePixCasal).then(() => {
+                alert("Código PIX copiado! Abra o app do banco, escolha 'PIX Copia e Cola' e não se esqueça de digitar o valor do presente.");
+            }).catch(err => {
+                alert("Erro ao copiar. Tente escanear o QR Code.");
+            });
+        }
+
+        /* ==========================================
+           SISTEMA DE LISTA VIP
+           ========================================== */
+        let listaVip = JSON.parse(localStorage.getItem('listaVip')) || ["Stefany", "Pedro"];
+        const normalizar = (texto) => texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+
+        function buscarConvidado() {
+            const nomeDigitado = document.getElementById('nome-busca').value;
+            if (!nomeDigitado) return;
+            const convidadoAchou = listaVip.find(nomeVip => normalizar(nomeVip) === normalizar(nomeDigitado));
+            if (convidadoAchou) {
+                document.getElementById('msg-erro').style.display = 'none';
+                document.getElementById('area-busca').style.display = 'none';
+                document.getElementById('area-confirmacao').style.display = 'block';
+                document.getElementById('nome-encontrado').innerHTML = `Olá, ${convidadoAchou}!`;
+            } else {
+                document.getElementById('msg-erro').style.display = 'block';
+            }
+        }
+
+        function confirmar(vai) {
+            alert(vai ? "Que alegria! Sua presença foi confirmada na nossa Lista VIP." : "Poxa, sentiremos sua falta. Obrigado por avisar!");
+            document.getElementById('area-busca').style.display = 'block';
+            document.getElementById('area-confirmacao').style.display = 'none';
+            document.getElementById('nome-busca').value = '';
+        }
+
+        function renderizarConvidados() {
+            const container = document.getElementById('lista-admin-convidados');
+            container.innerHTML = '';
+            listaVip.forEach((nome, index) => {
+                container.innerHTML += `<div class="item-admin" style="padding: 10px;"><span>👤 ${nome}</span><button class="btn-excluir" style="padding: 5px 10px;" onclick="excluirConvidado(${index})">Remover</button></div>`;
+            });
+            localStorage.setItem('listaVip', JSON.stringify(listaVip));
+        }
+
+        document.getElementById('form-add-convidado').addEventListener('submit', function(e) {
+            e.preventDefault();
+            listaVip.push(document.getElementById('nome-novo-convidado').value);
+            renderizarConvidados();
+            this.reset();
+        });
+
+        function excluirConvidado(index) {
+            listaVip.splice(index, 1);
+            renderizarConvidados();
+        }
+
+        function toggleAdmin() {
+            const painel = document.getElementById('painel-admin');
+            painel.style.display = (painel.style.display === 'block') ? 'none' : 'block';
+            if(painel.style.display === 'block') window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+
+        renderizarPresentes();
+        renderizarConvidados();
+    </script>
+</body>
+</html>
