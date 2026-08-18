@@ -113,10 +113,11 @@
     /* Galeria */
     .gallery{padding:130px 0 150px;background:var(--blush);overflow:hidden}.gallery-header{display:grid;grid-template-columns:1fr 1.5fr;align-items:end;gap:50px;width:min(calc(100% - 40px),1180px);margin:0 auto 80px}
     .gallery-header .display-title{margin:0}.gallery-header>p{max-width:390px;margin:0 0 14px auto;color:var(--muted)}
-    .gallery-collage{position:relative;width:min(calc(100% - 36px),1180px);height:740px;margin:auto}.gallery-item{position:absolute;margin:0;overflow:hidden;box-shadow:var(--shadow)}
-    .gallery-item img{width:100%;height:100%;object-fit:cover}.ga{top:0;left:0;width:33%;height:61%;transform:rotate(-2deg)}.gb{top:7%;left:37%;width:28%;height:38%;transform:rotate(2deg)}
-    .gc{top:0;right:0;width:29%;height:68%;transform:rotate(-1deg)}.gd{bottom:0;left:21%;width:36%;height:42%;transform:rotate(1.5deg)}.ge{right:10%;bottom:1%;width:29%;height:31%;transform:rotate(-3deg)}
-    .ga img,.ge img{filter:grayscale(.95) contrast(.91)}.gc img{object-position:35%}.gallery-note{position:absolute;top:48%;left:47%;z-index:4;max-width:250px;color:var(--sage);transform:rotate(-5deg)}
+    .gallery-collage{position:relative;width:min(calc(100% - 36px),1180px);height:740px;margin:auto;perspective:1200px}.gallery-item{position:absolute;margin:0;overflow:hidden;box-shadow:var(--shadow);transform-origin:center;backface-visibility:hidden;will-change:transform}
+    .gallery-item img{width:100%;height:100%;object-fit:cover}.ga{top:0;left:0;z-index:5;width:33%;height:61%;--final-rotation:-2;transform:rotate(-2deg)}.gb{top:7%;left:37%;z-index:3;width:28%;height:38%;--final-rotation:2;transform:rotate(2deg)}
+    .gc{top:0;right:0;z-index:2;width:29%;height:68%;--final-rotation:-1;transform:rotate(-1deg)}.gd{bottom:0;left:21%;z-index:4;width:36%;height:42%;--final-rotation:1.5;transform:rotate(1.5deg)}.ge{right:10%;bottom:1%;z-index:1;width:29%;height:31%;--final-rotation:-3;transform:rotate(-3deg)}
+    .ga img,.ge img{filter:grayscale(.95) contrast(.91)}.gc img{object-position:35%}.gallery-note{position:absolute;top:48%;left:47%;z-index:6;max-width:250px;color:var(--sage);transform:rotate(-5deg);transition:opacity .45s,transform .65s cubic-bezier(.2,.65,.3,1)}
+    .gallery-motion-ready .gallery-note{opacity:var(--note-opacity,0)}
     .ribbon{display:grid;grid-template-columns:repeat(5,1fr);height:clamp(180px,24vw,350px);margin-top:105px;transform:rotate(-1deg) scale(1.02)}
     .ribbon figure{margin:0;overflow:hidden;border-right:5px solid var(--light)}.ribbon img{width:100%;height:100%;object-fit:cover}
     .ribbon figure:nth-child(even) img{filter:grayscale(1)}.ribbon figure:first-child img{object-position:15%}.ribbon figure:nth-child(3) img{object-position:82%}
@@ -276,12 +277,12 @@
         <p>Fragmentos de uma história feita de dias comuns, viagens, risadas e da escolha diária de caminhar lado a lado.</p>
       </div>
       <div class="gallery-collage">
-        <!-- FOTO GALERIA 1 --><figure class="gallery-item ga reveal"><img src="assets/detalhe-casal.jpg" alt="Detalhe afetivo do casal à beira-mar"></figure>
-        <!-- FOTO GALERIA 2 --><figure class="gallery-item gb reveal"><img src="assets/casa-pier.jpg" alt="Entardecer no litoral"></figure>
-        <!-- FOTO GALERIA 3 --><figure class="gallery-item gc reveal"><img src="assets/hero-casal.jpg" alt="Passeio do casal pela praia"></figure>
-        <!-- FOTO GALERIA 4 --><figure class="gallery-item gd reveal"><img src="assets/casa-pier.jpg" alt="Vista do oceano ao pôr do sol"></figure>
-        <!-- FOTO GALERIA 5 --><figure class="gallery-item ge reveal"><img src="assets/hero-casal.jpg" alt="Casal caminhando de mãos dadas"></figure>
-        <p class="hand gallery-note reveal">a vida fica bonita quando compartilhada</p>
+        <!-- FOTO GALERIA 1 --><figure class="gallery-item ga"><img src="assets/detalhe-casal.jpg" alt="Detalhe afetivo do casal à beira-mar"></figure>
+        <!-- FOTO GALERIA 2 --><figure class="gallery-item gb"><img src="assets/casa-pier.jpg" alt="Entardecer no litoral"></figure>
+        <!-- FOTO GALERIA 3 --><figure class="gallery-item gc"><img src="assets/hero-casal.jpg" alt="Passeio do casal pela praia"></figure>
+        <!-- FOTO GALERIA 4 --><figure class="gallery-item gd"><img src="assets/casa-pier.jpg" alt="Vista do oceano ao pôr do sol"></figure>
+        <!-- FOTO GALERIA 5 --><figure class="gallery-item ge"><img src="assets/hero-casal.jpg" alt="Casal caminhando de mãos dadas"></figure>
+        <p class="hand gallery-note">a vida fica bonita quando compartilhada</p>
       </div>
       <div class="ribbon" aria-label="Tira editorial de fotografias">
         <!-- FOTOS GALERIA FAIXA -->
@@ -509,6 +510,19 @@
     document.getElementById('nome-busca').addEventListener('keydown',e=>{if(e.key==='Enter')buscarConvidado()});
     document.getElementById('modal-pagamento').addEventListener('click',e=>{if(e.target.id==='modal-pagamento')fecharModal()});
     document.addEventListener('keydown',e=>{if(e.key==='Escape'){fecharModal();navLinks.classList.remove('open');menuToggle.classList.remove('open');menuToggle.setAttribute('aria-expanded','false')}});
+    const galeria=document.querySelector('.gallery-collage'),fotosGaleria=[...document.querySelectorAll('.gallery-item')],notaGaleria=document.querySelector('.gallery-note');let quadroGaleria=0;
+    function limitar(valor,minimo=0,maximo=1){return Math.min(maximo,Math.max(minimo,valor))}
+    function animarGaleria(){
+      quadroGaleria=0;if(!galeria||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+      const caixa=galeria.getBoundingClientRect(),inicio=innerHeight*.82-galeria.clientHeight/2,fim=innerHeight*.04,progresso=limitar((inicio-caixa.top)/(inicio-fim)),larguraPilha=innerWidth<761?145:190;
+      fotosGaleria.forEach((foto,indice)=>{
+        const atraso=indice*.035,local=limitar((progresso-atraso)/(1-atraso)),suave=local*local*(3-2*local),centroX=galeria.clientWidth/2-(foto.offsetLeft+foto.offsetWidth/2),centroY=galeria.clientHeight/2-(foto.offsetTop+foto.offsetHeight/2),escalaInicial=Math.min(.92,larguraPilha/foto.offsetWidth),escala=escalaInicial+(1-escalaInicial)*suave,rotacaoFinal=Number(getComputedStyle(foto).getPropertyValue('--final-rotation'))||0,rotacoesPilha=[-7,-3,4,7,-1],rotacao=rotacoesPilha[indice]+(rotacaoFinal-rotacoesPilha[indice])*suave;
+        foto.style.transform='translate('+(centroX*(1-suave)).toFixed(2)+'px,'+(centroY*(1-suave)).toFixed(2)+'px) rotate('+rotacao.toFixed(2)+'deg) scale('+escala.toFixed(3)+')';
+      });
+      if(notaGaleria)notaGaleria.style.setProperty('--note-opacity',limitar((progresso-.62)/.28).toFixed(3));
+    }
+    function solicitarAnimacaoGaleria(){if(!quadroGaleria)quadroGaleria=requestAnimationFrame(animarGaleria)}
+    if(galeria&&!matchMedia('(prefers-reduced-motion:reduce)').matches){document.documentElement.classList.add('gallery-motion-ready');addEventListener('scroll',solicitarAnimacaoGaleria,{passive:true});addEventListener('resize',solicitarAnimacaoGaleria);animarGaleria()}
     let observador;
     function observarEntradas(){const itens=document.querySelectorAll('.reveal:not([data-seen])');if(!('IntersectionObserver'in window)||matchMedia('(prefers-reduced-motion:reduce)').matches){itens.forEach(i=>i.classList.add('visible'));return}if(!observador)observador=new IntersectionObserver(entradas=>entradas.forEach(entrada=>{if(entrada.isIntersecting){entrada.target.classList.add('visible');observador.unobserve(entrada.target)}}),{threshold:.12,rootMargin:'0px 0px -35px'});itens.forEach(i=>{i.dataset.seen='true';observador.observe(i)})}
     restaurarSessaoAdmin();carregarPixGlobal();carregarPresentesGlobais();renderizarConvidados();observarEntradas();
