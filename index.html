@@ -169,7 +169,8 @@
     .admin-session{display:flex;align-items:center;justify-content:space-between;gap:20px}.admin-session p{margin:0}.admin-status{min-height:22px;margin:16px 0 0!important;color:#d7c7ae!important}.admin-status.error{color:#e2a39a!important}
     .image-preview-admin{display:flex;align-items:center;gap:14px;margin:12px 0 18px;padding:12px;border:1px solid #41423f}.image-preview-admin[hidden]{display:none}.image-preview-admin img{width:72px;height:72px;object-fit:contain;background:#fff}.image-preview-admin span{color:#b9bab5;font:.75rem/1.4 system-ui}
     .admin-inline{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end}.admin-inline input{margin:0}
-    .item-admin{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:15px 0;border-bottom:1px solid #41423f;font: .83rem system-ui}.item-admin small{display:block;margin-top:3px;color:#9a9b96}
+    .item-admin{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:15px 0;border-bottom:1px solid #41423f;font: .83rem system-ui}.item-admin small{display:block;margin-top:3px;color:#9a9b96}.item-admin-actions,.admin-form-actions{display:flex;gap:8px}.admin-form-actions .button{flex:1}
+    .btn-editar{width:auto;padding:8px 12px;border:1px solid #77745f;background:transparent;color:#d7c7ae;font:.68rem system-ui;text-transform:uppercase;cursor:pointer}.btn-editar:hover{background:#77745f;color:#fff}.btn-editar:disabled{border-color:#555;color:#777;cursor:not-allowed}.btn-editar:disabled:hover{background:transparent;color:#777}
     .btn-excluir{width:auto;padding:8px 12px;border:1px solid #775b57;background:transparent;color:#d8aaa3;font: .68rem system-ui;text-transform:uppercase;cursor:pointer}.btn-excluir:hover{background:#775b57;color:#fff}.btn-excluir:disabled{border-color:#555;color:#777;cursor:not-allowed}.btn-excluir:disabled:hover{background:transparent;color:#777}
 
     /* Movimento */
@@ -329,9 +330,9 @@
       <div class="admin-header"><div><h2 id="admin-titulo">Painel do casal</h2><p>Os presentes são sincronizados com segurança pelo Supabase.</p></div><button class="button outline" type="button" onclick="toggleAdmin()">Fechar painel</button></div>
       <div class="admin-grid">
         <section class="admin-card wide"><h3>Acesso seguro aos presentes</h3><div id="admin-desconectado"><p>Entre com o usuário administrador do Supabase para adicionar ou excluir presentes.</p><form id="form-admin-login" class="admin-login"><div><label for="admin-email">E-mail</label><input type="email" id="admin-email" autocomplete="username" required></div><div><label for="admin-senha">Senha</label><input type="password" id="admin-senha" autocomplete="current-password" required></div><button class="button" type="submit">Entrar</button></form></div><div id="admin-conectado" class="admin-session" hidden><p>Conectado como <strong id="admin-email-logado"></strong></p><button class="button outline" type="button" onclick="sairAdmin()">Sair</button></div><p id="admin-auth-status" class="admin-status" role="status" aria-live="polite"></p></section>
-        <section class="admin-card wide"><h3>Configuração do PIX</h3><p>Abra o aplicativo do banco, crie um código PIX sem valor definido e cole abaixo o texto “Copia e Cola”. O QR Code será criado na tela de pagamento.</p><label for="config-pix">Código PIX Copia e Cola</label><input type="text" id="config-pix" placeholder="Cole o código PIX completo"><button class="button" type="button" onclick="salvarPix()">Salvar PIX</button></section>
+        <section class="admin-card wide"><h3>Configuração global do PIX</h3><p>Abra o aplicativo do banco, crie um código PIX sem valor definido e cole abaixo o texto “Copia e Cola”. Depois de salvo, o mesmo código será carregado para todos os convidados e dispositivos.</p><label for="config-pix">Código PIX Copia e Cola</label><input type="text" id="config-pix" placeholder="Cole o código PIX completo"><button class="button" id="btn-salvar-pix" type="button" onclick="salvarPix()" disabled>Salvar PIX para todos</button><p id="pix-admin-status" class="admin-status" role="status" aria-live="polite"></p></section>
         <section class="admin-card"><h3>Lista VIP de convidados</h3><form id="form-add-convidado" class="admin-inline"><div><label for="nome-novo-convidado">Nome do convidado</label><input type="text" id="nome-novo-convidado" placeholder="Nome e sobrenome" required></div><button class="button" type="submit">Adicionar</button></form><div id="lista-admin-convidados"></div></section>
-        <section class="admin-card"><h3>Lista de presentes</h3><p><strong>Lista global conectada ao Supabase.</strong> Cole o link da loja: ao salvar, o site procura a foto, guarda uma cópia no Storage e publica o presente para todos.</p><form id="form-add-presente"><label for="nome-prod">Nome do presente</label><input type="text" id="nome-prod" required><label for="valor-prod">Valor total em reais</label><input type="number" id="valor-prod" min="0.01" step="0.01" required><label for="cotas-prod">Quantidade de cotas</label><input type="number" id="cotas-prod" min="1" step="1" required><label for="link-pgto-prod">Link do produto</label><input type="url" id="link-pgto-prod" placeholder="https://..." required><label for="imagem-prod">Imagem manual (somente se a busca automática falhar)</label><input type="url" id="imagem-prod" placeholder="https://..."><div id="image-preview-admin" class="image-preview-admin" hidden><img id="image-preview-admin-img" src="" alt="Prévia da foto encontrada"><span id="image-preview-admin-text"></span></div><button class="button" id="btn-salvar-presente" type="submit" disabled>Buscar foto e publicar</button><p id="presente-admin-status" class="admin-status" role="status" aria-live="polite"></p></form><div id="lista-admin-presentes"></div></section>
+        <section class="admin-card"><h3 id="titulo-form-presente">Novo presente</h3><p><strong>Lista global conectada ao Supabase.</strong> Use “Editar” em um presente existente ou preencha o formulário para criar outro. Quando houver link de loja, o site procura e armazena a foto automaticamente.</p><form id="form-add-presente"><label for="nome-prod">Nome do presente</label><input type="text" id="nome-prod" required><label for="valor-prod">Valor total em reais</label><input type="number" id="valor-prod" min="0.01" step="0.01" required><label for="cotas-prod">Quantidade de cotas</label><input type="number" id="cotas-prod" min="1" step="1" required><label for="link-pgto-prod">Link do produto (opcional)</label><input type="url" id="link-pgto-prod" placeholder="https://..."><label for="imagem-prod">Nova imagem manual (opcional)</label><input type="url" id="imagem-prod" placeholder="https://..."><div id="image-preview-admin" class="image-preview-admin" hidden><img id="image-preview-admin-img" src="" alt="Prévia da foto do presente"><span id="image-preview-admin-text"></span></div><div class="admin-form-actions"><button class="button" id="btn-salvar-presente" type="submit" disabled>Publicar presente</button><button class="button outline" id="btn-cancelar-edicao" type="button" onclick="cancelarEdicaoPresente()" hidden>Cancelar edição</button></div><p id="presente-admin-status" class="admin-status" role="status" aria-live="polite"></p></form><div id="lista-admin-presentes"></div></section>
       </div>
     </div>
   </section>
@@ -358,7 +359,8 @@
       const conectado=Boolean(sessaoAdmin&&sessaoAdmin.access_token),desconectado=document.getElementById('admin-desconectado'),areaConectada=document.getElementById('admin-conectado');
       desconectado.hidden=conectado;areaConectada.hidden=!conectado;document.getElementById('admin-email-logado').textContent=conectado?(sessaoAdmin.user?.email||'administrador'):'';
       document.getElementById('btn-salvar-presente').disabled=!conectado;
-      document.querySelectorAll('.btn-excluir-presente').forEach(botao=>botao.disabled=!conectado);
+      document.getElementById('btn-salvar-pix').disabled=!conectado;
+      document.querySelectorAll('.btn-excluir-presente,.btn-editar-presente').forEach(botao=>botao.disabled=!conectado);
     }
     async function renovarSessaoAdmin(){
       if(!sessaoAdmin?.refresh_token)return null;
@@ -384,10 +386,24 @@
       atualizarInterfaceAdmin();if(!sessaoAdmin)return;const token=await tokenAdmin();if(!token||!(await contaEhAdministradora(token,sessaoAdmin.user.id))){limparSessaoAdmin();mensagemAdmin('Entre novamente para administrar os presentes.',true);return}atualizarInterfaceAdmin();mensagemAdmin('Sessão administrativa restaurada.');
     }
 
-    /* CONFIGURAÇÃO PIX — preserva a chave localStorage: chavePix */
+    /* CONFIGURAÇÃO PIX GLOBAL — localStorage permanece apenas como cache de emergência. */
     let chavePixCasal=localStorage.getItem('chavePix')||'';
     document.getElementById('config-pix').value=chavePixCasal;
-    function salvarPix(){chavePixCasal=document.getElementById('config-pix').value.trim();localStorage.setItem('chavePix',chavePixCasal);alert('Código PIX salvo. O QR Code será gerado na tela de pagamento.')}
+    function statusPix(texto,erro=false){const area=document.getElementById('pix-admin-status');area.textContent=texto;area.classList.toggle('error',erro)}
+    async function carregarPixGlobal(){
+      try{
+        const resposta=await fetch(SUPABASE_URL+'/rest/v1/site_settings?select=setting_value&setting_key=eq.pix_key&limit=1',{headers:{apikey:SUPABASE_PUBLISHABLE_KEY}});if(!resposta.ok)throw new Error('Falha ao carregar o PIX global.');const dados=await resposta.json();
+        if(dados.length){chavePixCasal=dados[0].setting_value;localStorage.setItem('chavePix',chavePixCasal);document.getElementById('config-pix').value=chavePixCasal;statusPix('PIX global carregado do Supabase.')}
+      }catch(erro){console.warn('Usando o PIX salvo neste navegador como contingência.',erro);statusPix('Não foi possível carregar o PIX global; usando o cache deste navegador.',true)}
+    }
+    async function salvarPix(){
+      const token=await tokenAdmin(),botao=document.getElementById('btn-salvar-pix'),valor=document.getElementById('config-pix').value.trim();if(!token){mensagemAdmin('Entre antes de salvar o PIX.',true);return}if(!valor){statusPix('Cole um código PIX antes de salvar.',true);return}
+      botao.disabled=true;statusPix('Salvando para todos...');
+      try{
+        const resposta=await fetch(SUPABASE_URL+'/rest/v1/site_settings?on_conflict=setting_key',{method:'POST',headers:{apikey:SUPABASE_PUBLISHABLE_KEY,Authorization:'Bearer '+token,'Content-Type':'application/json',Prefer:'resolution=merge-duplicates,return=representation'},body:JSON.stringify({setting_key:'pix_key',setting_value:valor,updated_at:new Date().toISOString()})});const dados=await resposta.json().catch(()=>({}));if(!resposta.ok)throw new Error(dados.message||'O Supabase não permitiu salvar o PIX.');
+        chavePixCasal=valor;localStorage.setItem('chavePix',valor);statusPix('PIX salvo globalmente. Todos os convidados receberão este código.');
+      }catch(erro){statusPix(erro.message||'Não foi possível salvar o PIX.',true)}finally{botao.disabled=!sessaoAdmin}
+    }
 
     /* PRESENTES, COTAS E CHECKOUT — preserva a chave: listaPresentes */
     let presentesAtuais=lerListaSalva('listaPresentes',[]);
@@ -417,6 +433,7 @@
         renderizarPresentes();
       }
     }
+    let presenteEditando=null;
     function renderizarPresentes(){
       const site=document.getElementById('container-presentes'),admin=document.getElementById('lista-admin-presentes');
       site.innerHTML='';admin.innerHTML='';
@@ -425,31 +442,41 @@
         const cota=Number(presente.valorTotal)/Number(presente.totalCotas),nome=escaparHtml(presente.nome);
         const imagem=presente.imagem?'<figure class="gift-image"><img src="'+escaparHtml(presente.imagem)+'" alt="'+nome+'" loading="lazy" decoding="async" onerror="this.closest(\'.gift-image\').classList.add(\'gift-image-placeholder\');this.remove()"></figure>':'<div class="gift-image gift-image-placeholder"><span>com carinho</span></div>';
         site.insertAdjacentHTML('beforeend','<article class="card-presente reveal">'+imagem+'<span class="gift-number">PRESENTE '+String(index+1).padStart(2,'0')+'</span><h3>'+nome+'</h3><div class="info-preco"><p>Valor total<br>'+formatarMoeda(presente.valorTotal)+'</p><p class="quota">'+formatarMoeda(cota)+' <small>/ cota</small></p></div><div class="controle-cotas"><label for="qtd-'+presente.id+'">Quantas cotas?</label><input type="number" id="qtd-'+presente.id+'" min="1" max="'+presente.totalCotas+'" value="1" inputmode="numeric"></div><button class="button" type="button" onclick="abrirCheckout('+index+','+cota+')">Escolher presente</button></article>');
-        admin.insertAdjacentHTML('beforeend','<div class="item-admin"><div><strong>'+nome+'</strong><small>'+presente.totalCotas+' cotas · '+formatarMoeda(presente.valorTotal)+'</small></div><button class="btn-excluir btn-excluir-presente" type="button" onclick="excluirPresente('+Number(presente.id)+')"'+(sessaoAdmin?'':' disabled')+'>Excluir</button></div>');
+        const desabilitado=sessaoAdmin?'':' disabled';
+        admin.insertAdjacentHTML('beforeend','<div class="item-admin"><div><strong>'+nome+'</strong><small>'+presente.totalCotas+' cotas · '+formatarMoeda(presente.valorTotal)+'</small></div><div class="item-admin-actions"><button class="btn-editar btn-editar-presente" type="button" onclick="editarPresente('+Number(presente.id)+')"'+desabilitado+'>Editar</button><button class="btn-excluir btn-excluir-presente" type="button" onclick="excluirPresente('+Number(presente.id)+')"'+desabilitado+'>Excluir</button></div></div>');
       });
       localStorage.setItem('listaPresentes',JSON.stringify(presentesAtuais));observarEntradas();
     }
     function statusPresente(texto,erro=false){const area=document.getElementById('presente-admin-status');area.textContent=texto;area.classList.toggle('error',erro)}
     function mostrarPreviaImagem(url,texto){const area=document.getElementById('image-preview-admin'),imagem=document.getElementById('image-preview-admin-img');imagem.src=url;document.getElementById('image-preview-admin-text').textContent=texto;area.hidden=false}
+    function editarPresente(id){
+      if(!sessaoAdmin){mensagemAdmin('Entre antes de editar um presente.',true);return}const presente=presentesAtuais.find(p=>Number(p.id)===Number(id));if(!presente)return;presenteEditando={...presente};
+      document.getElementById('titulo-form-presente').textContent='Editar presente';document.getElementById('nome-prod').value=presente.nome;document.getElementById('valor-prod').value=presente.valorTotal;document.getElementById('cotas-prod').value=presente.totalCotas;document.getElementById('link-pgto-prod').value=presente.linkCartao;document.getElementById('imagem-prod').value='';
+      document.getElementById('btn-salvar-presente').textContent='Salvar alterações';document.getElementById('btn-cancelar-edicao').hidden=false;if(presente.imagem)mostrarPreviaImagem(presente.imagem,'Imagem atual — será mantida se o link não mudar.');else document.getElementById('image-preview-admin').hidden=true;statusPresente('Editando “'+presente.nome+'”.');document.getElementById('form-add-presente').scrollIntoView({behavior:'smooth',block:'center'});document.getElementById('nome-prod').focus();
+    }
+    function cancelarEdicaoPresente(){
+      presenteEditando=null;const form=document.getElementById('form-add-presente');form.reset();document.getElementById('titulo-form-presente').textContent='Novo presente';document.getElementById('btn-salvar-presente').textContent='Publicar presente';document.getElementById('btn-cancelar-edicao').hidden=true;document.getElementById('image-preview-admin').hidden=true;statusPresente('');
+    }
     async function buscarImagemProduto(link,token){
       const resposta=await fetch(SUPABASE_URL+'/functions/v1/product-image',{method:'POST',headers:{apikey:SUPABASE_PUBLISHABLE_KEY,Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify({url:link})});
       const dados=await resposta.json().catch(()=>({}));if(!resposta.ok)throw new Error(dados.error||'Não foi possível obter a foto automaticamente.');return dados;
     }
     document.getElementById('form-add-presente').addEventListener('submit',async function(evento){
-      evento.preventDefault();const botao=document.getElementById('btn-salvar-presente'),token=await tokenAdmin();if(!token){mensagemAdmin('Entre antes de publicar um presente.',true);return}
+      evento.preventDefault();const botao=document.getElementById('btn-salvar-presente'),token=await tokenAdmin();if(!token){mensagemAdmin('Entre antes de salvar um presente.',true);return}
       const nome=document.getElementById('nome-prod').value.trim(),valor=parseFloat(document.getElementById('valor-prod').value),cotas=parseInt(document.getElementById('cotas-prod').value,10),link=document.getElementById('link-pgto-prod').value.trim();let imagem=document.getElementById('imagem-prod').value.trim();
-      botao.disabled=true;this.setAttribute('aria-busy','true');statusPresente(imagem?'Publicando presente...':'Buscando a foto do produto...');
+      const editando=presenteEditando;botao.disabled=true;this.setAttribute('aria-busy','true');statusPresente(!imagem&&link&&(!editando||link!==editando.linkCartao)?'Buscando a foto do produto...':'Salvando presente...');
       try{
-        if(!imagem){const metadados=await buscarImagemProduto(link,token);imagem=metadados.image_url;mostrarPreviaImagem(imagem,'Foto encontrada e salva no Supabase Storage.');statusPresente('Foto encontrada. Publicando presente...')}
-        const ordem=Math.max(0,...presentesAtuais.map(p=>Number(p.ordem)||0))+10;
-        const resposta=await fetch(SUPABASE_URL+'/rest/v1/gifts?select=id,name,total_value,total_quotas,card_link,image_url,sort_order,active',{method:'POST',headers:{apikey:SUPABASE_PUBLISHABLE_KEY,Authorization:'Bearer '+token,'Content-Type':'application/json',Prefer:'return=representation'},body:JSON.stringify({name:nome,total_value:valor,total_quotas:cotas,card_link:link,image_url:imagem,sort_order:ordem,active:true})});
-        const dados=await resposta.json().catch(()=>({}));if(!resposta.ok)throw new Error(dados.message||dados.details||'O Supabase não permitiu publicar o presente.');
-        this.reset();document.getElementById('image-preview-admin').hidden=true;await carregarPresentesGlobais();statusPresente('Presente publicado para todos com sucesso.');
-      }catch(erro){statusPresente((erro.message||'Não foi possível publicar.')+' Se a loja bloqueou a busca, cole uma imagem manual.',true)}finally{this.removeAttribute('aria-busy');botao.disabled=!sessaoAdmin}
+        if(!imagem&&editando&&link===editando.linkCartao)imagem=editando.imagem;
+        if(!imagem&&link){const metadados=await buscarImagemProduto(link,token);imagem=metadados.image_url;mostrarPreviaImagem(imagem,'Foto encontrada e salva no Supabase Storage.');statusPresente('Foto encontrada. Salvando presente...')}
+        const corpo={name:nome,total_value:valor,total_quotas:cotas,card_link:link||null,image_url:imagem||null,active:true,updated_at:new Date().toISOString()};let metodo='POST',url=SUPABASE_URL+'/rest/v1/gifts?select=id,name,total_value,total_quotas,card_link,image_url,sort_order,active';
+        if(editando){metodo='PATCH';url=SUPABASE_URL+'/rest/v1/gifts?id=eq.'+encodeURIComponent(editando.id)+'&select=id,name,total_value,total_quotas,card_link,image_url,sort_order,active'}else corpo.sort_order=Math.max(0,...presentesAtuais.map(p=>Number(p.ordem)||0))+10;
+        const resposta=await fetch(url,{method:metodo,headers:{apikey:SUPABASE_PUBLISHABLE_KEY,Authorization:'Bearer '+token,'Content-Type':'application/json',Prefer:'return=representation'},body:JSON.stringify(corpo)});const dados=await resposta.json().catch(()=>({}));if(!resposta.ok)throw new Error(dados.message||dados.details||'O Supabase não permitiu salvar o presente.');
+        cancelarEdicaoPresente();await carregarPresentesGlobais();statusPresente(editando?'Alterações salvas para todos.':'Presente publicado para todos com sucesso.');
+      }catch(erro){statusPresente((erro.message||'Não foi possível salvar.')+(link?' Se a loja bloqueou a busca, cole uma imagem manual.':''),true)}finally{this.removeAttribute('aria-busy');botao.disabled=!sessaoAdmin}
     });
     async function excluirPresente(id){
       const token=await tokenAdmin();if(!token){mensagemAdmin('Entre antes de excluir um presente.',true);return}const presente=presentesAtuais.find(p=>Number(p.id)===Number(id));if(!presente||!confirm('Excluir “'+presente.nome+'” da lista pública?'))return;
-      const resposta=await fetch(SUPABASE_URL+'/rest/v1/gifts?id=eq.'+encodeURIComponent(id),{method:'DELETE',headers:{apikey:SUPABASE_PUBLISHABLE_KEY,Authorization:'Bearer '+token}});if(!resposta.ok){statusPresente('Não foi possível excluir o presente.',true);return}await carregarPresentesGlobais();statusPresente('Presente excluído da lista pública.');
+      const resposta=await fetch(SUPABASE_URL+'/rest/v1/gifts?id=eq.'+encodeURIComponent(id),{method:'DELETE',headers:{apikey:SUPABASE_PUBLISHABLE_KEY,Authorization:'Bearer '+token}});if(!resposta.ok){statusPresente('Não foi possível excluir o presente.',true);return}if(presenteEditando&&Number(presenteEditando.id)===Number(id))cancelarEdicaoPresente();await carregarPresentesGlobais();statusPresente('Presente excluído da lista pública.');
     }
     function abrirCheckout(index,valorCota){
       const presente=presentesAtuais[index];if(!presente)return;
@@ -484,7 +511,7 @@
     document.addEventListener('keydown',e=>{if(e.key==='Escape'){fecharModal();navLinks.classList.remove('open');menuToggle.classList.remove('open');menuToggle.setAttribute('aria-expanded','false')}});
     let observador;
     function observarEntradas(){const itens=document.querySelectorAll('.reveal:not([data-seen])');if(!('IntersectionObserver'in window)||matchMedia('(prefers-reduced-motion:reduce)').matches){itens.forEach(i=>i.classList.add('visible'));return}if(!observador)observador=new IntersectionObserver(entradas=>entradas.forEach(entrada=>{if(entrada.isIntersecting){entrada.target.classList.add('visible');observador.unobserve(entrada.target)}}),{threshold:.12,rootMargin:'0px 0px -35px'});itens.forEach(i=>{i.dataset.seen='true';observador.observe(i)})}
-    restaurarSessaoAdmin();carregarPresentesGlobais();renderizarConvidados();observarEntradas();
+    restaurarSessaoAdmin();carregarPixGlobal();carregarPresentesGlobais();renderizarConvidados();observarEntradas();
   </script>
 </body>
 </html>

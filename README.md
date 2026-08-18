@@ -5,7 +5,7 @@ Site estático conectado ao Supabase para exibir e administrar a lista de presen
 ## Administração dos presentes
 
 O painel **Acesso do casal** usa Supabase Auth. Somente usuários presentes em
-`public.site_admins` podem criar ou excluir presentes.
+`public.site_admins` podem criar, editar ou excluir presentes e alterar o PIX.
 
 Ao publicar um presente, o site:
 
@@ -16,6 +16,10 @@ Ao publicar um presente, o site:
 
 Se uma loja bloquear a busca automática, o formulário aceita uma URL de imagem
 manual.
+
+O código PIX é armazenado em `public.site_settings`. A leitura da configuração
+`pix_key` é pública para permitir o pagamento pelos convidados, mas sua escrita
+é restrita aos administradores por RLS.
 
 ## Ativar o primeiro administrador
 
