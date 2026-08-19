@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&amp;family=Gilda+Display&amp;family=Nothing+You+Could+Do&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260819-21">
+  <link rel="stylesheet" href="styles.css?v=20260819-27">
 </head>
 <body>
   <a class="skip" href="#conteudo">Ir para o conteúdo</a>
@@ -23,7 +23,7 @@
       <a href="#informacoes">Informações</a>
       <a href="#galeria">Fotos</a>
       <a href="#presentes">Presentes</a>
-      <a href="#rsvp">RSVP</a>
+      <a href="#rsvp">Presença</a>
       <a href="#mensagem">Deixe um recado</a>
     </div>
   </nav>
@@ -85,7 +85,7 @@
           <img class="formal-monogram" src="assets/monogram-sp.png" alt="Monograma de Stefany e Pedro">
           <p>Com carinho,<br>família de Pedro</p>
         </div>
-        <p class="formal-blessing">Com a bênção de Deus e de nossas famílias</p>
+        <p class="formal-blessing">Com a bênção de Deus<br>e de nossas famílias</p>
         <h2 class="formal-couple-title" id="recados-title"><span>Stefany</span><i>&amp;</i><span>Pedro</span></h2>
         <p class="formal-invite-text">Temos a honra de convidar você<br>para celebrar a união de nossas<br>vidas no casamento.</p>
       </div>
@@ -105,7 +105,7 @@
           <p class="schedule-note">Os horários podem receber pequenos ajustes mais perto da data.</p>
         </div>
         <div class="info-accordions reveal">
-          <details open><summary><span>01</span> Vestimenta <i>+</i></summary><div><h3>Esporte fino</h3><p>Para celebrar com elegância, o traje será esporte fino. Evite branco, tons claros, rosa-pink, amarelo-manteiga e laranja.</p><img class="dress-code-art" src="assets/dress-code-watercolor.png" alt="Ilustração em aquarela de convidados usando trajes esporte fino em tons escuros" loading="lazy" decoding="async"></div></details>
+          <details open><summary><span>01</span> Vestimenta <i>+</i></summary><div><h3>Esporte fino</h3><p>Para celebrar com elegância, o traje será esporte fino. Evite branco, tons claros, rosa-pink, amarelo-manteiga e laranja.</p><img class="dress-code-art" src="assets/dress-code-party-watercolor-v2.png" alt="Ilustração em aquarela de convidados dançando e celebrando com trajes esporte fino coloridos" loading="lazy" decoding="async"></div></details>
           <details><summary><span>02</span> Chegada <i>+</i></summary><div><h3>Venha um pouco antes</h3><p>Recomendamos chegar com 30 minutos de antecedência para estacionar, encontrar seu lugar e aproveitar a recepção.</p></div></details>
         </div>
       </div>
@@ -116,7 +116,7 @@
       <div class="venue-copy reveal">
         <p class="eyebrow">Onde será</p><h2 id="local-title">Casa Pier</h2><p class="venue-place">Espírito Santo</p><p>Um cenário de frente para o mar para celebrar o começo da nossa nova fase.</p>
         <a class="button button-wine" href="https://www.google.com/maps/search/?api=1&amp;query=Casa+Pier+Esp%C3%ADrito+Santo" target="_blank" rel="noopener">Abrir rota no mapa</a>
-        <a class="map-preview" href="https://www.google.com/maps/search/?api=1&amp;query=Casa+Pier+Esp%C3%ADrito+Santo" target="_blank" rel="noopener" aria-label="Abrir Casa Pier no Google Maps"><span class="map-pin"><img src="assets/monogram-sp.png" alt="" aria-hidden="true"></span><span class="map-line line-a"></span><span class="map-line line-b"></span><span class="map-line line-c"></span><small>Toque para traçar a rota</small></a>
+        <div class="map-preview"><iframe src="https://www.google.com/maps?q=Casa+Pier+Esp%C3%ADrito+Santo&amp;output=embed" title="Mapa da Casa Pier, Espírito Santo" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a class="map-overlay-link" href="https://www.google.com/maps/search/?api=1&amp;query=Casa+Pier+Esp%C3%ADrito+Santo" target="_blank" rel="noopener"><img src="assets/monogram-sp.png" alt="" aria-hidden="true"><span><strong>Casa Pier</strong><small>Abrir no Google Maps</small></span></a></div>
       </div>
     </section>
 
@@ -124,10 +124,12 @@
       <div class="gallery-heading reveal"><p class="eyebrow">Nosso álbum</p><h2 id="gallery-title">Memórias<br>até aqui.</h2><p>Clique em uma polaroide para olhar mais de perto.</p></div>
       <div class="polaroid-wall" id="polaroid-wall">
         <img class="gallery-watercolor" src="assets/watercolor-wildflowers.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
-        <figure class="polaroid p1" tabindex="0" data-lightbox="assets/hero-casal.jpg" data-caption="Um passeio, uma vida inteira pela frente"><img src="assets/hero-casal.jpg" alt="Casal caminhando na praia"><figcaption>onde tudo começou</figcaption></figure>
-        <figure class="polaroid p2" tabindex="0" data-lightbox="assets/detalhe-casal.jpg" data-caption="Os pequenos gestos que guardamos"><img src="assets/detalhe-casal.jpg" alt="Mãos do casal entrelaçadas"><figcaption>meu lugar favorito</figcaption></figure>
-        <figure class="polaroid p3" tabindex="0" data-lightbox="assets/casa-pier.jpg" data-caption="O mar que será testemunha do nosso sim"><img src="assets/casa-pier.jpg" alt="Vista do mar na Casa Pier"><figcaption>contando os dias...</figcaption></figure>
-        <figure class="polaroid p4" tabindex="0" data-lightbox="assets/hero-casal.jpg" data-caption="Lado a lado, do nosso jeito"><img src="assets/hero-casal.jpg" alt="Casal junto ao mar"><figcaption>para sempre nós</figcaption></figure>
+        <figure class="polaroid p1" tabindex="0" data-lightbox="assets/photos/memory-01.webp" data-caption="O começo do nosso para sempre"><img src="assets/photos/memory-01.webp" alt="Stefany e Pedro celebrando juntos com flores" loading="lazy" decoding="async"><figcaption>o nosso sim</figcaption></figure>
+        <figure class="polaroid p2" tabindex="0" data-lightbox="assets/photos/memory-05.webp" data-caption="As melhores aventuras são vividas juntos"><img src="assets/photos/memory-05.webp" alt="Stefany e Pedro abraçados diante de uma paisagem" loading="lazy" decoding="async"><figcaption>aventuras a dois</figcaption></figure>
+        <figure class="polaroid p3" tabindex="0" data-lightbox="assets/photos/memory-06.webp" data-caption="Lado a lado, do nosso jeito"><img src="assets/photos/memory-06.webp" alt="Stefany e Pedro sorrindo juntos durante um passeio" loading="lazy" decoding="async"><figcaption>lado a lado</figcaption></figure>
+        <figure class="polaroid p4" tabindex="0" data-lightbox="assets/photos/memory-03.webp" data-caption="A alegria mora nos nossos momentos mais simples"><img src="assets/photos/memory-03.webp" alt="Stefany e Pedro sorrindo juntos em um momento descontraído" loading="lazy" decoding="async"><figcaption>do nosso jeito</figcaption></figure>
+        <figure class="polaroid p5" tabindex="0" data-lightbox="assets/photos/memory-04.webp" data-caption="Sempre encontramos motivos para sorrir"><img src="assets/photos/memory-04.webp" alt="Stefany e Pedro sorrindo durante um passeio" loading="lazy" decoding="async"><figcaption>um dia de cada vez</figcaption></figure>
+        <figure class="polaroid p6" tabindex="0" data-lightbox="assets/photos/memory-07.webp" data-caption="Entre risadas e caminhos compartilhados"><img src="assets/photos/memory-07.webp" alt="Stefany e Pedro sorrindo juntos durante uma viagem" loading="lazy" decoding="async"><figcaption>sempre juntos</figcaption></figure>
       </div>
     </section>
 
@@ -137,9 +139,9 @@
     </section>
 
     <section class="rsvp" id="rsvp" aria-labelledby="rsvp-title">
-      <div class="rsvp-photo reveal"><img src="assets/detalhe-casal.jpg" alt="Detalhe afetivo das mãos do casal"><span class="hand">esperamos você!</span></div>
+      <div class="rsvp-photo reveal"><img src="assets/photos/memory-02.webp" alt="Stefany e Pedro sorrindo juntos na praia à noite" loading="lazy" decoding="async"><span class="hand">esperamos você!</span></div>
       <div class="rsvp-copy reveal">
-        <p class="eyebrow">Répondez s'il vous plaît</p><h2 id="rsvp-title">Confirme sua presença.</h2><p>Responda até 18 de março de 2027. Um formulário por família é suficiente.</p>
+        <h2 id="rsvp-title">Confirme sua presença.</h2><p>Responda até 18 de março de 2027. Um formulário por família é suficiente.</p>
         <form id="rsvp-form" class="pretty-form">
           <label for="rsvp-name">Nome e sobrenome</label><input id="rsvp-name" name="name" type="text" autocomplete="name" maxlength="120" required placeholder="Como está no convite">
           <fieldset><legend>Você estará com a gente?</legend><label class="choice"><input type="radio" name="attendance" value="sim" required><span>Sim, com alegria!</span></label><label class="choice"><input type="radio" name="attendance" value="nao"><span>Infelizmente não</span></label></fieldset>
@@ -159,7 +161,6 @@
 
   <footer class="site-footer">
     <img class="footer-palm" src="assets/identity-palm.png" alt=""><img class="footer-monogram" src="assets/monogram-sp.png" alt="Monograma de Stefany e Pedro"><p>18 · 04 · 2027</p><p>Casa Pier — Espírito Santo</p><p class="hand">Com amor, Stefany &amp; Pedro</p>
-    <div class="footer-meta"><span>Um dia colorido para guardar</span><button class="admin-open" type="button" onclick="toggleAdmin()" aria-controls="painel-admin" aria-expanded="false">Acesso do casal</button></div>
   </footer>
 
   <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Foto ampliada" hidden><button class="lightbox-close" type="button" aria-label="Fechar foto">×</button><figure><img id="lightbox-image" src="" alt=""><figcaption id="lightbox-caption"></figcaption></figure></div>
@@ -183,6 +184,6 @@
     </div>
   </section>
 
-  <script src="app.js?v=20260819-20"></script>
+  <script src="app.js?v=20260819-24"></script>
 </body>
 </html>
