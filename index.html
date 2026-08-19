@@ -3,529 +3,196 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f5f0e8">
+  <meta name="theme-color" content="#cd0f4d">
   <meta name="description" content="Convite de casamento de Stefany e Pedro — 18 de abril de 2027.">
   <title>Stefany &amp; Pedro — 18.04.2027</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,ital,wght@6..96,400;6..96,500;6..96,600;6..96,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Italiana&family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --paper:#f5f0e8;--light:#fcfaf6;--ivory:#ebe3d8;--blush:#eaded8;
-      --sand:#d7c6b1;--ink:#292823;--muted:#716b61;--sage:#787e65;
-      --line:rgba(41,40,35,.16);--serif:'Cormorant Garamond',Georgia,serif;
-      --display:'Bodoni Moda','Times New Roman',serif;--fine:'Italiana',serif;
-      --script:'Nothing You Could Do',cursive;--shadow:0 18px 50px rgba(57,48,39,.09)
-    }
-    *,*:before,*:after{box-sizing:border-box}
-    html{scroll-behavior:smooth;scroll-padding-top:80px}
-    body{margin:0;color:var(--ink);background-color:var(--paper);
-      background-image:radial-gradient(rgba(57,48,39,.035) .7px,transparent .7px);
-      background-size:7px 7px;font:18px/1.6 var(--serif);overflow-x:hidden}
-    body.modal-open{overflow:hidden}img{display:block;max-width:100%}button,input{font:inherit}
-    button,a{-webkit-tap-highlight-color:transparent}h1,h2,h3,p{margin-top:0}
-    h1,h2,h3{font-weight:400;line-height:1.08}a{color:inherit}::selection{color:#fff;background:var(--sage)}
-    .skip{position:fixed;top:10px;left:10px;z-index:5000;padding:8px 14px;background:var(--ink);color:#fff;transform:translateY(-150%)}
-    .skip:focus{transform:none}
-
-    /* Menu */
-    .site-nav{position:absolute;inset:0 0 auto;z-index:1000;display:flex;align-items:center;
-      justify-content:space-between;width:min(calc(100% - 36px),1320px);height:78px;margin:auto;
-      border-bottom:1px solid rgba(41,40,35,.12)}
-    .nav-mark{font:1rem var(--display);letter-spacing:.08em;text-decoration:none}
-    .nav-links{display:flex;align-items:center;gap:clamp(18px,2.6vw,42px)}
-    .nav-links a{position:relative;font-size:.68rem;letter-spacing:.18em;text-decoration:none;text-transform:uppercase}
-    .nav-links a:after{position:absolute;right:0;bottom:-7px;left:0;height:1px;content:'';
-      background:var(--ink);transform:scaleX(0);transform-origin:right;transition:.3s}
-    .nav-links a:hover:after,.nav-links a:focus-visible:after{transform:scaleX(1);transform-origin:left}
-    .menu-toggle{position:relative;display:none;width:44px;height:44px;padding:0;border:0;background:none;cursor:pointer}
-    .menu-toggle span,.menu-toggle:before,.menu-toggle:after{display:block;width:23px;height:1px;margin:5px auto;content:'';background:var(--ink);transition:.25s}
-    .menu-toggle.open span{opacity:0}.menu-toggle.open:before{transform:translateY(6px) rotate(45deg)}
-    .menu-toggle.open:after{transform:translateY(-6px) rotate(-45deg)}
-
-    /* Tipografia e controles */
-    .eyebrow,.kicker{margin-bottom:15px;font-size:.66rem;letter-spacing:.23em;text-transform:uppercase}
-    .kicker{color:var(--sage)}.display-title{margin-bottom:24px;font:clamp(2.55rem,6vw,5.8rem)/1.02 var(--display);letter-spacing:-.045em}
-    .hand{font:clamp(1rem,2.1vw,1.6rem)/1.35 var(--script)}
-    .button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 24px;
-      border:1px solid var(--ink);border-radius:0;background:var(--ink);color:var(--light);
-      font-size:.72rem;letter-spacing:.15em;line-height:1;text-decoration:none;text-transform:uppercase;
-      cursor:pointer;transition:background .25s,color .25s,transform .25s}
-    .button:hover,.button:focus-visible{background:transparent;color:var(--ink);transform:translateY(-2px)}
-    .button.light{border-color:rgba(255,255,255,.8);background:transparent;color:#fff}
-    .button.light:hover{background:#fff;color:var(--ink)}.button.outline{background:transparent;color:var(--ink)}
-    .button.outline:hover{background:var(--ink);color:#fff}
-
-    /* Hero / FOTO HERO */
-    .hero{position:relative;display:grid;grid-template-columns:minmax(180px,.8fr) minmax(360px,1.2fr) minmax(180px,.8fr);
-      align-items:center;min-height:100svh;padding:118px max(24px,5vw) 62px;isolation:isolate}
-    .hero:before{position:absolute;top:18%;left:7%;z-index:-1;width:180px;height:280px;content:'';border:1px solid var(--line);transform:rotate(-7deg)}
-    .hero-copy{align-self:end;padding-bottom:5vh}.hero-title{max-width:430px;margin:0;font:clamp(3.2rem,7.1vw,7rem)/.82 var(--display);letter-spacing:-.065em}
-    .hero-title span{display:block;margin:.15em 0 .08em 35%;font: .44em var(--script);letter-spacing:0}
-    .hero-copy .hand{max-width:220px;margin:34px 0 0 10%;transform:rotate(-4deg)}
-    .hero-collage{position:relative;width:min(100%,580px);height:min(68vw,680px);max-height:70vh;min-height:520px;margin:auto}
-    .paper-photo{position:absolute;padding:9px 9px 34px;background:#fdfbf7;box-shadow:var(--shadow)}
-    .paper-photo img{width:100%;height:100%;object-fit:cover;background:var(--ivory)}
-    .hero-main{top:3%;left:19%;z-index:3;width:60%;height:75%;transform:rotate(-2.2deg)}
-    .hero-detail{right:2%;bottom:2%;z-index:4;width:39%;height:43%;padding-bottom:25px;transform:rotate(4deg)}
-    .hero-detail img{object-position:42%;filter:grayscale(1) contrast(.92)}
-    .film{position:absolute;bottom:12%;left:-5%;z-index:5;display:grid;gap:5px;width:26%;padding:7px 7px 18px;background:#24231f;box-shadow:var(--shadow);transform:rotate(-6deg)}
-    .film img{width:100%;aspect-ratio:1/.72;object-fit:cover;filter:grayscale(1) contrast(.92)}
-    .film img:first-child{object-position:20%}.film img:last-child{object-position:82%}
-    .tape{position:absolute;z-index:8;width:84px;height:24px;background:rgba(220,205,180,.68);box-shadow:inset 0 0 8px rgba(255,255,255,.45)}
-    .tape.one{top:0;left:38%;transform:rotate(4deg)}.tape.two{right:-8px;bottom:35%;transform:rotate(82deg)}
-    .hero-aside{align-self:start;justify-self:end;padding-top:16vh;text-align:right}
-    .hero-date{margin:0;font:clamp(1.3rem,2.4vw,2.15rem) var(--fine)}.hero-place{margin-top:12px;color:var(--muted);font-size:.72rem;letter-spacing:.18em;line-height:1.7;text-transform:uppercase}
-    .hero-aside .hand{margin:14vh 14% 0 0;color:var(--sage);transform:rotate(3deg)}
-    .scroll-cue{position:absolute;right:28px;bottom:28px;display:flex;align-items:center;gap:12px;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;writing-mode:vertical-rl}
-    .scroll-cue:after{width:1px;height:52px;content:'';background:var(--ink)}
-
-    /* Envelope */
-    .invitation{position:relative;min-height:720px;padding:125px 20px 150px;background:var(--light);text-align:center;overflow:hidden}
-    .envelope-scene{position:relative;width:min(92vw,640px);height:390px;margin:110px auto 0}
-    .envelope{position:absolute;right:0;bottom:0;left:0;z-index:4;height:255px;background:#ded0bd;box-shadow:0 28px 55px rgba(69,58,47,.09);clip-path:polygon(0 0,50% 48%,100% 0,100% 100%,0 100%)}
-    .invite-card{position:absolute;right:16%;bottom:112px;left:16%;z-index:2;min-height:300px;padding:52px 30px;border:1px solid var(--line);background:#fbf8f2;box-shadow:var(--shadow);transform:rotate(-1.5deg)}
-    .invite-card .monogram{display:block;margin-bottom:28px}.invite-card h2{margin-bottom:12px;font:clamp(2.2rem,5vw,4rem) var(--fine)}
-    .invite-card p{margin:0;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase}
-    .envelope-photo{position:absolute;right:2%;bottom:118px;z-index:3;width:30%;aspect-ratio:.72;padding:7px 7px 26px;background:#fff;box-shadow:var(--shadow);transform:rotate(7deg)}
-    .envelope-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(.9)}
-    .invitation>.hand{position:absolute;top:185px;left:calc(50% - 390px);color:var(--sage);transform:rotate(-6deg)}
-
-    /* Casamento */
-    .wedding{padding:90px max(18px,3vw) 130px}.wedding-intro{display:flex;justify-content:space-between;align-items:end;width:min(calc(100% - 30px),1240px);margin:0 auto 45px}
-    .wedding-intro h2{max-width:630px;margin:0;font:clamp(2.5rem,5vw,5.2rem)/1.02 var(--display);letter-spacing:-.05em}
-    .wedding-intro .hand{max-width:250px;margin-bottom:10px;color:var(--sage);transform:rotate(2deg)}
-    .venue{position:relative;width:min(100%,1480px);min-height:min(75vw,690px);margin:auto;background:#928b7f;overflow:hidden}
-    .venue>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.venue:after{position:absolute;inset:0;content:'';background:linear-gradient(90deg,rgba(27,26,22,.6),transparent 72%)}
-    .venue-info{position:absolute;top:50%;left:clamp(24px,7vw,100px);z-index:2;color:#fff;transform:translateY(-50%)}
-    .venue-info .date{margin-bottom:20px;font:clamp(2rem,4.5vw,4.6rem) var(--display);letter-spacing:-.04em}
-    .venue-info .place{margin-bottom:32px;font-size:.78rem;letter-spacing:.2em;line-height:1.9;text-transform:uppercase}
-
-    /* História */
-    .story{padding:170px 6vw;background:var(--light);overflow:hidden}.story-layout{display:grid;grid-template-columns:minmax(220px,.8fr) minmax(320px,1fr) minmax(190px,.65fr);gap:clamp(28px,6vw,100px);align-items:center;width:min(100%,1260px);margin:auto}
-    .story-photo-1{position:relative;transform:rotate(-3deg)}.story-photo-1:after{position:absolute;right:-35px;bottom:10%;content:'onde tudo começou';color:var(--sage);font:1.1rem var(--script);transform:rotate(6deg)}
-    .story-photo-1 .paper-photo{position:relative;width:100%;height:490px}.story-photo-1 img{filter:grayscale(1) contrast(.9)}
-    .story-copy{padding-top:30px}.story-copy h2{margin-left:-8%}.story-copy p{max-width:580px;color:#514e47;font-size:clamp(1.12rem,1.7vw,1.4rem);line-height:1.8}
-    .story-copy .initial{float:left;margin:.06em .12em 0 0;font:4.8rem/.72 var(--display)}
-    .story-photo-2{align-self:end;padding-top:230px;transform:rotate(4deg)}.story-photo-2 .paper-photo{position:relative;width:100%;height:330px;padding-bottom:28px}
-    .story-photo-2 img{object-position:44%}.story-photo-2 .hand{margin:26px 0 0 -40px;transform:rotate(-6deg)}
-
-    /* Galeria */
-    .gallery{padding:130px 0 150px;background:var(--blush);overflow:hidden}.gallery-header{display:grid;grid-template-columns:1fr 1.5fr;align-items:end;gap:50px;width:min(calc(100% - 40px),1180px);margin:0 auto 80px}
-    .gallery-header .display-title{margin:0}.gallery-header>p{max-width:390px;margin:0 0 14px auto;color:var(--muted)}
-    .gallery-collage{position:relative;width:min(calc(100% - 36px),1180px);height:740px;margin:auto;perspective:1200px}.gallery-item{position:absolute;margin:0;overflow:hidden;box-shadow:var(--shadow);transform-origin:center;backface-visibility:hidden;will-change:transform}
-    .gallery-item img{width:100%;height:100%;object-fit:cover}.ga{top:0;left:0;z-index:5;width:33%;height:61%;--final-rotation:-2;transform:rotate(-2deg)}.gb{top:7%;left:37%;z-index:3;width:28%;height:38%;--final-rotation:2;transform:rotate(2deg)}
-    .gc{top:0;right:0;z-index:2;width:29%;height:68%;--final-rotation:-1;transform:rotate(-1deg)}.gd{bottom:0;left:21%;z-index:4;width:36%;height:42%;--final-rotation:1.5;transform:rotate(1.5deg)}.ge{right:10%;bottom:1%;z-index:1;width:29%;height:31%;--final-rotation:-3;transform:rotate(-3deg)}
-    .ga img,.ge img{filter:grayscale(.95) contrast(.91)}.gc img{object-position:35%}.gallery-note{position:absolute;top:48%;left:47%;z-index:6;max-width:250px;color:var(--sage);transform:rotate(-5deg);transition:opacity .45s,transform .65s cubic-bezier(.2,.65,.3,1)}
-    .gallery-motion-ready .gallery-note{opacity:var(--note-opacity,0)}
-    .ribbon{display:grid;grid-template-columns:repeat(5,1fr);height:clamp(180px,24vw,350px);margin-top:105px;transform:rotate(-1deg) scale(1.02)}
-    .ribbon figure{margin:0;overflow:hidden;border-right:5px solid var(--light)}.ribbon img{width:100%;height:100%;object-fit:cover}
-    .ribbon figure:nth-child(even) img{filter:grayscale(1)}.ribbon figure:first-child img{object-position:15%}.ribbon figure:nth-child(3) img{object-position:82%}
-
-    /* Presentes */
-    .gifts{padding:150px 24px;background:var(--light)}.gifts-header{display:grid;grid-template-columns:1.4fr .7fr;align-items:end;gap:40px;width:min(100%,1120px);margin:0 auto 70px}
-    .gifts-header .display-title{max-width:760px;margin:0}.gifts-header>p{max-width:330px;margin:0 0 12px auto;color:var(--muted)}
-    .grid-presentes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;width:min(100%,1120px);margin:auto;border-top:1px solid var(--line);border-left:1px solid var(--line)}
-    .card-presente{display:flex;min-height:590px;padding:clamp(30px,5vw,58px);border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(255,255,255,.25);flex-direction:column;transition:.35s}
-    .card-presente:hover{background:rgba(255,255,255,.7)}.gift-number{color:var(--sage);font-size:.64rem;letter-spacing:.2em}
-    .gift-image{display:grid;width:100%;aspect-ratio:4/3;margin:0 0 28px;place-items:center;overflow:hidden;background:#fff}
-    .gift-image img{width:100%;height:100%;object-fit:contain;transition:transform .55s ease}.card-presente:hover .gift-image img{transform:scale(1.035)}
-    .gift-image-placeholder{background:linear-gradient(145deg,var(--ivory),#e8e5dc)}.gift-image-placeholder span{color:var(--sage);font:2rem var(--script);transform:rotate(-4deg)}
-    .card-presente h3{max-width:430px;margin:22px 0 34px;font:clamp(1.8rem,3vw,2.7rem) var(--display);letter-spacing:-.025em}
-    .info-preco{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-top:auto;margin-bottom:25px;color:var(--muted)}.info-preco p{margin:0}
-    .info-preco .quota{color:var(--ink);font:1.35rem var(--fine)}.info-preco small{font: .75rem var(--serif)}
-    .controle-cotas{display:grid;grid-template-columns:1fr 84px;align-items:center;gap:15px;margin-bottom:18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-    .controle-cotas label{font-size:.76rem;letter-spacing:.09em;text-transform:uppercase}.controle-cotas input{height:52px;margin:0;border:0;border-left:1px solid var(--line);text-align:center}
-    .card-presente .button{width:100%}.empty-gifts{grid-column:1/-1;padding:80px 20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center}.empty-gifts .hand{color:var(--sage)}
-
-    /* RSVP */
-    .rsvp{position:relative;padding:165px 24px;background:var(--ivory);overflow:hidden}.rsvp:before{position:absolute;top:-120px;right:-130px;width:420px;height:420px;border:1px solid rgba(123,128,103,.2);border-radius:50%;content:''}
-    .rsvp-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(50px,10vw,150px);align-items:center;width:min(100%,1100px);margin:auto}.rsvp-copy{max-width:370px}
-    .rsvp-copy .hand{margin:55px 0 0 20%;color:var(--sage);transform:rotate(-4deg)}.rsvp-box{padding:clamp(35px,6vw,72px);border:1px solid var(--line);background:rgba(252,250,246,.75);box-shadow:0 25px 80px rgba(57,48,39,.05)}
-    .rsvp-box h3{margin-bottom:16px;font:clamp(1.7rem,3vw,2.6rem) var(--display)}.rsvp-box>p{margin-bottom:42px;color:var(--muted)}
-    input[type=text],input[type=number],input[type=url],input[type=email],input[type=password]{width:100%;min-height:50px;margin:0 0 22px;padding:10px 2px;border:0;border-bottom:1px solid rgba(41,40,35,.32);border-radius:0;outline:0;background:transparent;color:var(--ink);font:1.05rem var(--serif)}
-    input:focus{border-bottom-color:var(--sage)}input::placeholder{color:#928b81}.msg-erro{display:none;margin:-6px 0 18px;color:#8d554d;font-size:.86rem}
-    .rsvp-actions{display:flex;gap:10px}.rsvp-actions .button{flex:1}#nome-encontrado{margin-bottom:10px;color:var(--sage);font:1.55rem var(--script)}
-
-    /* Footer, checkout e admin */
-    .site-footer{padding:100px 24px 35px;background:var(--ink);color:var(--paper);text-align:center}.footer-monogram{display:block;margin-bottom:35px;font:clamp(3.2rem,7vw,6rem) var(--display);letter-spacing:-.08em}
-    .footer-date{margin-bottom:12px;font-size:.72rem;letter-spacing:.3em}.site-footer .hand{margin:30px 0 60px;color:#cfc3b2}
-    .footer-meta{display:flex;align-items:center;justify-content:space-between;padding-top:24px;border-top:1px solid rgba(255,255,255,.14);color:#a8a095;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase}
-    .admin-open{width:auto;padding:6px 0;border:0;border-bottom:1px solid transparent;background:none;color:inherit;font-size:inherit;letter-spacing:inherit;text-transform:uppercase;cursor:pointer}.admin-open:hover{border-color:currentColor}
-    .modal-overlay{position:fixed;inset:0;z-index:3000;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(31,30,27,.68);backdrop-filter:blur(6px)}
-    .modal-content{position:relative;width:min(100%,520px);max-height:92vh;padding:clamp(38px,7vw,68px);border:1px solid var(--line);border-radius:3px;background:var(--light);box-shadow:0 30px 90px rgba(0,0,0,.22);text-align:center;overflow-y:auto}
-    .modal-close{position:absolute;top:14px;right:14px;width:44px;height:44px;padding:0;border:0;background:none;color:var(--muted);font-size:2rem;line-height:1;cursor:pointer}
-    .modal-mark{display:block;margin-bottom:16px;color:var(--sage);font:1.25rem var(--display)}.modal-content h2{margin-bottom:14px;font:clamp(2rem,6vw,3.2rem) var(--display)}
-    #resumo-compra{margin-bottom:28px;color:var(--muted)}#resumo-compra .total{display:block;margin-top:12px;color:var(--ink);font:1.6rem var(--fine)}
-    #area-pix{padding:28px 20px;border:1px solid var(--line);background:rgba(238,231,220,.42)}#area-pix p{margin-bottom:12px}
-    .qr-code-img{display:none;width:188px;height:188px;margin:20px auto;padding:10px;border:1px solid var(--line);background:#fff}
-    #aviso-valor-pix{color:#80564f;font-size:.86rem;line-height:1.45}#area-pix .button,#btn-link-pagamento{width:100%}
-    #area-cartao{display:none;margin-top:22px;padding-top:22px;border-top:1px solid var(--line)}
-    .admin-panel{display:none;padding:70px 24px 90px;background:#242523;color:#f4f0e9}.admin-inner{width:min(100%,920px);margin:auto}
-    .admin-header{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:45px}.admin-header h2{margin-bottom:8px;font:500 1.8rem system-ui}.admin-header p{margin:0;color:#a9aaa5;font: .84rem system-ui}
-    .admin-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.admin-card{padding:28px;border:1px solid #41423f;background:#2b2c2a}.admin-card.wide{grid-column:1/-1}
-    .admin-card h3{margin-bottom:18px;color:#fff;font:600 1rem system-ui}.admin-card p,.admin-card label{color:#b9bab5;font: .78rem/1.5 system-ui}.admin-card label{display:block;margin-top:15px}
-    .admin-card input{border-bottom-color:#555;color:#fff;font: .88rem system-ui}.admin-card .button{min-height:42px;border-color:#d7c7ae;background:#d7c7ae;color:#242523;font: .68rem system-ui}.admin-card .button:hover{background:transparent;color:#fff}
-    .admin-card .button:disabled{border-color:#555;background:#555;color:#aaa;cursor:not-allowed}.admin-login{display:grid;grid-template-columns:1fr 1fr auto;gap:18px;align-items:end}.admin-login input{margin:0}
-    .admin-session{display:flex;align-items:center;justify-content:space-between;gap:20px}.admin-session p{margin:0}.admin-status{min-height:22px;margin:16px 0 0!important;color:#d7c7ae!important}.admin-status.error{color:#e2a39a!important}
-    .image-preview-admin{display:flex;align-items:center;gap:14px;margin:12px 0 18px;padding:12px;border:1px solid #41423f}.image-preview-admin[hidden]{display:none}.image-preview-admin img{width:72px;height:72px;object-fit:contain;background:#fff}.image-preview-admin span{color:#b9bab5;font:.75rem/1.4 system-ui}
-    .admin-inline{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:end}.admin-inline input{margin:0}
-    .item-admin{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:15px 0;border-bottom:1px solid #41423f;font: .83rem system-ui}.item-admin small{display:block;margin-top:3px;color:#9a9b96}.item-admin-actions,.admin-form-actions{display:flex;gap:8px}.admin-form-actions .button{flex:1}
-    .btn-editar{width:auto;padding:8px 12px;border:1px solid #77745f;background:transparent;color:#d7c7ae;font:.68rem system-ui;text-transform:uppercase;cursor:pointer}.btn-editar:hover{background:#77745f;color:#fff}.btn-editar:disabled{border-color:#555;color:#777;cursor:not-allowed}.btn-editar:disabled:hover{background:transparent;color:#777}
-    .btn-excluir{width:auto;padding:8px 12px;border:1px solid #775b57;background:transparent;color:#d8aaa3;font: .68rem system-ui;text-transform:uppercase;cursor:pointer}.btn-excluir:hover{background:#775b57;color:#fff}.btn-excluir:disabled{border-color:#555;color:#777;cursor:not-allowed}.btn-excluir:disabled:hover{background:transparent;color:#777}
-
-    /* Movimento */
-    .reveal{opacity:0;transform:translateY(24px);transition:opacity .85s,transform .85s cubic-bezier(.2,.65,.3,1)}.reveal.visible{opacity:1;transform:translateY(0)}
-
-    @media(max-width:960px){
-      .hero{grid-template-columns:.75fr 1.25fr;min-height:auto}.hero-collage{grid-column:2;grid-row:1/span 2;height:630px}.hero-copy{align-self:start;padding:90px 0 0}.hero-aside{align-self:end;justify-self:start;padding:0 0 60px;text-align:left}.hero-aside .hand{margin:45px 0 0}
-      .story-layout{grid-template-columns:.8fr 1.2fr}.story-photo-2{display:none}.gallery-collage{height:630px}
-    }
-    @media(max-width:760px){
-      body{font-size:17px}.site-nav{height:68px}.menu-toggle{display:block}.nav-links{position:absolute;top:68px;right:-18px;left:-18px;display:grid;gap:0;padding:18px 24px 26px;border-bottom:1px solid var(--line);background:rgba(247,243,236,.98);opacity:0;pointer-events:none;transform:translateY(-10px);transition:.22s}.nav-links.open{opacity:1;pointer-events:auto;transform:none}.nav-links a{padding:13px 0;border-bottom:1px solid rgba(41,40,35,.08)}
-      .menu-toggle:before,.menu-toggle:after{display:none}.menu-toggle span{width:auto;height:auto;background:none;box-shadow:none;font-size:.64rem;letter-spacing:.15em;text-transform:uppercase}.menu-toggle.open span{opacity:1}
-      .hero{display:flex;flex-direction:column;align-items:stretch;min-height:100svh;padding:110px 20px 55px}.hero-copy{z-index:7;padding:0}.hero-title{max-width:320px;font-size:clamp(3.4rem,18vw,5rem)}.hero-copy .hand{position:static;width:190px;margin:22px 0 0 15%;font-size:.95rem}.hero-collage{width:100%;height:470px;min-height:0;max-height:none;margin:6px auto 0}.hero-main{left:14%;width:66%;height:78%}.hero-detail{right:0;bottom:0;width:38%;height:43%}.film{bottom:5%;left:0;width:28%}.hero-aside{display:flex;align-items:end;justify-content:space-between;width:100%;padding:24px 0 0}.hero-aside .hand,.scroll-cue{display:none}.hero-date{font-size:1.2rem}.hero-place{margin:0;text-align:right}
-      .invitation{min-height:650px;padding:105px 15px 110px}.invitation>.hand{position:static;margin:0 auto 65px;transform:rotate(-3deg)}.envelope-scene{height:310px;margin-top:0}.envelope{height:180px}.invite-card{right:10%;bottom:75px;left:10%;min-height:245px;padding:38px 18px}.invite-card h2{font-size:2.2rem}.envelope-photo{right:-1%;bottom:70px;width:30%}
-      .wedding{padding:75px 14px 95px}.wedding-intro{display:block;width:calc(100% - 20px);margin-bottom:30px}.wedding-intro .hand{margin-top:25px}.venue{min-height:620px}.venue>img{object-position:62%}.venue:after{background:linear-gradient(0deg,rgba(27,26,22,.72),transparent 80%)}.venue-info{top:auto;right:28px;bottom:42px;left:28px;transform:none}
-      .story{padding:110px 20px 125px}.story-layout{display:flex;flex-direction:column;align-items:stretch}.story-photo-1{width:78%}.story-photo-1 .paper-photo{height:410px}.story-photo-1:after{right:-55px}.story-copy{padding-top:50px}.story-copy h2{margin-left:0}
-      .gallery{padding:100px 0}.gallery-header{display:block;margin-bottom:55px}.gallery-header>p{margin:24px 0 0}.gallery-collage{height:740px}.ga{width:50%;height:36%}.gb{top:2%;right:0;left:auto;width:43%;height:28%}.gc{top:47%;right:auto;left:4%;width:43%;height:42%}.gd{right:1%;bottom:3%;left:auto;width:48%;height:39%}.ge{display:none}.gallery-note{top:32%;right:1%;left:auto;width:46%;font-size:.95rem;line-height:1.2;text-align:center;transform:rotate(-3deg)}.ribbon{grid-template-columns:repeat(5,42vw);height:220px;margin-top:60px;overflow:hidden}
-      .gifts{padding:105px 18px}.gifts-header{display:block;margin-bottom:45px}.gifts-header>p{margin:25px 0 0}.grid-presentes{grid-template-columns:1fr}.card-presente{min-height:360px;padding:34px 28px}
-      .rsvp{padding:105px 18px}.rsvp-layout{grid-template-columns:1fr;gap:50px}.rsvp-copy .hand{margin-top:28px}.rsvp-box{padding:35px 26px}.rsvp-actions{flex-direction:column}
-      .footer-meta{flex-direction:column;gap:16px}.admin-grid{grid-template-columns:1fr}.admin-card.wide{grid-column:auto}.admin-header{align-items:start;flex-direction:column}.admin-inline,.admin-login{grid-template-columns:1fr}
-    }
-    @media(max-width:390px){.hero{padding-inline:16px}.hero-collage{height:420px}.hero-main{left:12%;width:69%}.story-photo-1{width:82%}.story-photo-1 .paper-photo{height:360px}.info-preco{align-items:start;flex-direction:column}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition-duration:.01ms!important;animation-duration:.01ms!important}.reveal{opacity:1;transform:none}}
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&amp;family=Gilda+Display&amp;family=Nothing+You+Could+Do&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <a class="skip" href="#conteudo">Ir para o conteúdo</a>
+
   <nav class="site-nav" aria-label="Navegação principal">
-    <a class="nav-mark" href="#inicio" aria-label="Stefany e Pedro — início">S&amp;P</a>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menu"><span>Menu</span></button>
+    <a class="nav-mark" href="#inicio" aria-label="Stefany e Pedro — início"><img src="assets/identity-palm.png" alt="" aria-hidden="true"></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menu"><span></span><span></span></button>
     <div class="nav-links" id="nav-links">
-      <a href="#historia">Nossa História</a><a href="#casamento">O Casamento</a>
-      <a href="#galeria">Galeria</a><a href="#presentes">Presentes</a><a href="#rsvp">RSVP</a>
+      <a href="#save-the-date">Data</a>
+      <a href="#recados">Dos noivos</a>
+      <a href="#informacoes">Informações</a>
+      <a href="#galeria">Fotos</a>
+      <a href="#presentes">Presentes</a>
+      <a href="#rsvp">RSVP</a>
+      <a href="#mensagem">Deixe um recado</a>
     </div>
   </nav>
 
   <main id="conteudo">
     <header class="hero" id="inicio">
-      <div class="hero-copy reveal">
-        <p class="eyebrow">Um convite para guardar</p>
-        <h1 class="hero-title">Stefany <span>&amp;</span> Pedro</h1>
-        <p class="hand">vamos nos casar — e você faz parte dessa história</p>
+      <div class="hero-media" aria-hidden="true">
+        <video id="hero-video" autoplay muted loop playsinline poster="assets/hero-casal.jpg">
+          <source src="assets/video-casal.mp4" type="video/mp4">
+        </video>
+        <img class="hero-fallback" src="assets/hero-casal.jpg" alt="">
       </div>
-      <div class="hero-collage" aria-label="Composição de fotografias do casal">
-        <!-- FOTO HERO -->
-        <figure class="paper-photo hero-main reveal"><img src="assets/hero-casal.jpg" alt="Casal caminhando junto à beira-mar" width="1024" height="1536"></figure>
-        <!-- FOTO HERO DETALHE -->
-        <figure class="paper-photo hero-detail reveal"><img src="assets/detalhe-casal.jpg" alt="Mãos entrelaçadas em um dia à beira-mar" width="1024" height="1536"></figure>
-        <!-- FOTO HERO TIRA -->
-        <div class="film reveal" aria-hidden="true"><img src="assets/hero-casal.jpg" alt=""><img src="assets/hero-casal.jpg" alt=""><img src="assets/hero-casal.jpg" alt=""></div>
-        <span class="tape one" aria-hidden="true"></span><span class="tape two" aria-hidden="true"></span>
+      <div class="hero-shade"></div>
+      <div class="hero-content reveal">
+        <div class="hero-year"><span>2027</span><span class="mini-monogram">S&amp;P</span><span>2027</span></div>
+        <h1><span>Stefany</span><i>&amp;</i><span>Pedro</span></h1>
+        <p class="hero-date">18 · 04 · 2027</p>
+        <button class="sound-toggle" id="sound-toggle" type="button" aria-pressed="false" hidden><span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i></span><span id="sound-label">Ativar som</span></button>
       </div>
-      <div class="hero-aside reveal">
-        <p class="hero-date">18 · 04 · 2027</p><p class="hero-place">Casa Pier<br>Espírito Santo</p><p class="hand">você está convidado!</p>
-      </div>
-      <span class="scroll-cue" aria-hidden="true">descubra</span>
+      <a class="scroll-cue" href="#save-the-date"><span>role para descobrir</span><i></i></a>
     </header>
 
-    <section class="invitation" aria-labelledby="convite-titulo">
-      <p class="hand reveal">e queremos você com a gente...</p>
-      <div class="envelope-scene reveal">
-        <div class="invite-card"><span class="monogram">S &amp; P</span><h2 id="convite-titulo">Você está convidado.</h2><p>18 de abril de 2027 · Casa Pier</p></div>
-        <!-- FOTO CONVITE -->
-        <figure class="envelope-photo"><img src="assets/detalhe-casal.jpg" alt="Detalhe do casal de mãos dadas"></figure>
-        <div class="envelope" aria-hidden="true"></div>
-      </div>
-    </section>
-
-    <section class="wedding" id="casamento" aria-labelledby="casamento-titulo">
-      <div class="wedding-intro reveal">
-        <div><p class="kicker">O casamento</p><h2 id="casamento-titulo">Onde o céu encontra o mar.</h2></div>
-        <p class="hand">uma tarde para celebrar o amor, sem pressa</p>
-      </div>
-      <div class="venue reveal">
-        <!-- FOTO O CASAMENTO -->
-        <img src="assets/casa-pier.jpg" alt="Cerimônia elegante preparada em um pier à beira-mar" width="1536" height="1024">
-        <div class="venue-info"><p class="date">18 de abril de 2027</p><p class="place">Casa Pier<br>Espírito Santo</p><a class="button light" href="#rsvp">Ver detalhes</a></div>
-      </div>
-    </section>
-
-    <section class="story" id="historia" aria-labelledby="historia-titulo">
-      <div class="story-layout">
-        <div class="story-photo-1 reveal">
-          <!-- FOTO NOSSA HISTÓRIA 1 -->
-          <figure class="paper-photo"><img src="assets/hero-casal.jpg" alt="Casal caminhando pela praia" width="1024" height="1536"></figure>
+    <section class="save-date paper-section" id="save-the-date" aria-labelledby="save-title">
+      <svg class="botanical botanical-left" viewBox="0 0 360 520" aria-hidden="true">
+        <path d="M60 520C80 380 115 230 242 44"/>
+        <path d="M101 373C27 342 12 278 25 222c72 18 105 76 76 151Z" class="leaf pink"/>
+        <path d="M146 278c-28-82 8-142 61-169 30 67 6 136-61 169Z" class="leaf yellow"/>
+        <path d="M194 196c15-78 70-111 126-109 0 72-43 120-126 109Z" class="leaf orange"/>
+        <circle cx="251" cy="42" r="27" class="flower wine"/><circle cx="226" cy="58" r="22" class="flower pink"/><circle cx="275" cy="67" r="20" class="flower yellow"/>
+      </svg>
+      <svg class="botanical botanical-right" viewBox="0 0 360 520" aria-hidden="true">
+        <path d="M60 520C80 380 115 230 242 44"/>
+        <path d="M101 373C27 342 12 278 25 222c72 18 105 76 76 151Z" class="leaf green"/>
+        <path d="M146 278c-28-82 8-142 61-169 30 67 6 136-61 169Z" class="leaf pink"/>
+        <path d="M194 196c15-78 70-111 126-109 0 72-43 120-126 109Z" class="leaf yellow"/>
+        <circle cx="251" cy="42" r="27" class="flower orange"/><circle cx="226" cy="58" r="22" class="flower wine"/><circle cx="275" cy="67" r="20" class="flower pink"/>
+      </svg>
+      <div class="save-inner reveal">
+        <img class="identity-palm" src="assets/identity-palm.png" alt="Símbolo de palmeira da identidade do casamento">
+        <p class="eyebrow">Save the date</p>
+        <h2 id="save-title">Um encontro marcado<br>com o amor.</h2>
+        <p class="date-written">Domingo, 18 de abril de 2027</p>
+        <div class="countdown" data-date="2027-04-18T16:00:00-03:00" aria-label="Contagem regressiva para o casamento">
+          <div><strong id="count-days">000</strong><span>dias</span></div>
+          <div><strong id="count-hours">00</strong><span>horas</span></div>
+          <div><strong id="count-minutes">00</strong><span>minutos</span></div>
+          <div><strong id="count-seconds">00</strong><span>segundos</span></div>
         </div>
-        <div class="story-copy reveal">
-          <p class="kicker">Capítulo um</p><h2 class="display-title" id="historia-titulo">Nossa História</h2>
-          <p><span class="initial">C</span>elebramos este dia tão especial com os pés na areia e a brisa do mar. A praia será o cenário onde daremos o próximo passo, cercados de amor e das pessoas que fazem parte da nossa jornada.</p>
-          <p>Entre encontros, planos e tantos momentos guardados, escolhemos dizer “sim” diante do horizonte — do nosso jeito, perto de quem tornou o caminho ainda mais bonito.</p>
+        <button class="button button-wine" type="button" id="calendar-button">Salvar na agenda</button>
+      </div>
+    </section>
+
+    <section class="invitation-section" aria-labelledby="convite-title">
+      <div class="invite-parents reveal"><p>Com a bênção de Deus<br>e de nossas famílias</p></div>
+      <div class="invitation-card reveal" id="invitation-card">
+        <button class="seal" id="open-invite" type="button" aria-expanded="false" aria-controls="invite-copy"><span>S&amp;P</span><small>toque para abrir</small></button>
+        <div class="invite-copy" id="invite-copy">
+          <span class="mini-monogram dark">S&amp;P</span>
+          <p class="eyebrow">Temos a alegria de convidar você</p>
+          <h2 id="convite-title">Stefany <i>&amp;</i> Pedro</h2>
+          <p>Para celebrar conosco a união de nossas vidas, diante do mar e de todos que fazem parte da nossa história.</p>
+          <span class="invite-date">18 · abril · 2027</span>
         </div>
-        <div class="story-photo-2 reveal">
-          <!-- FOTO NOSSA HISTÓRIA 2 -->
-          <figure class="paper-photo"><img src="assets/detalhe-casal.jpg" alt="Detalhe das mãos do casal" width="1024" height="1536"></figure>
-          <p class="hand">o melhor ainda está por vir</p>
+      </div>
+      <p class="hand invite-note">aperte o selo — guardamos uma surpresa aqui</p>
+    </section>
+
+    <section class="couple-notes" id="recados" aria-labelledby="recados-title">
+      <div class="section-heading reveal"><p class="eyebrow">Palavras nossas</p><h2 id="recados-title">De nós,<br>para vocês.</h2></div>
+      <div class="notes-stage">
+        <article class="note-card note-one reveal"><span class="note-number">01</span><p>“Sonhei com esse dia muitas vezes, mas ele só fica completo quando imagino cada pessoa querida ali. Obrigada por fazer parte da nossa história.”</p><strong>Com carinho, Stefany</strong></article>
+        <figure class="polaroid central-polaroid reveal" tabindex="0" data-lightbox="assets/hero-casal.jpg" data-caption="Stefany &amp; Pedro — o melhor ainda está por vir"><img src="assets/hero-casal.jpg" alt="Stefany e Pedro caminhando à beira-mar"><figcaption>nós dois, sempre</figcaption></figure>
+        <article class="note-card note-two reveal"><span class="note-number">02</span><p>“A melhor parte de qualquer caminho é saber quem estará ao nosso lado. Queremos brindar, rir e guardar esse dia com vocês para sempre.”</p><strong>Um abraço, Pedro</strong></article>
+      </div>
+    </section>
+
+    <section class="details" id="informacoes" aria-labelledby="info-title">
+      <div class="details-header reveal"><p class="eyebrow">Tudo o que você precisa saber</p><h2 id="info-title">Nosso dia,<br>passo a passo.</h2><p>Preparamos este guia para você chegar, celebrar e aproveitar sem pressa.</p></div>
+      <div class="details-grid">
+        <div class="timeline reveal" aria-label="Cronograma do casamento">
+          <h3>Cronograma</h3>
+          <ol>
+            <li><time>15:30</time><div><strong>Boas-vindas</strong><span>Chegue com calma e aproveite a vista.</span></div></li>
+            <li><time>16:00</time><div><strong>Cerimônia</strong><span>Nosso sim, de frente para o mar.</span></div></li>
+            <li><time>17:00</time><div><strong>Brinde &amp; fotos</strong><span>Um momento para celebrar juntos.</span></div></li>
+            <li><time>18:00</time><div><strong>Festa</strong><span>Comida, música e muitos abraços.</span></div></li>
+          </ol>
+          <p class="schedule-note">Os horários podem receber pequenos ajustes mais perto da data.</p>
+        </div>
+        <div class="info-accordions reveal">
+          <details open><summary><span>01</span> Vestimenta <i>+</i></summary><div><h3>Esporte fino tropical</h3><p>Cores e tecidos leves são muito bem-vindos. Como estaremos próximos ao mar, prefira sapatos confortáveis e evite branco e tons muito claros.</p><div class="color-dots" aria-label="Sugestão de cores"><i></i><i></i><i></i><i></i><i></i></div></div></details>
+          <details><summary><span>02</span> Chegada <i>+</i></summary><div><h3>Venha um pouco antes</h3><p>Recomendamos chegar com 30 minutos de antecedência para estacionar, encontrar seu lugar e aproveitar a recepção.</p></div></details>
+          <details><summary><span>03</span> Crianças <i>+</i></summary><div><h3>Confira seu convite</h3><p>Os nomes contemplados aparecem na confirmação de presença. Em caso de dúvida, fale com os noivos.</p></div></details>
         </div>
       </div>
     </section>
 
-    <section class="gallery" id="galeria" aria-labelledby="galeria-titulo">
-      <div class="gallery-header reveal">
-        <div><p class="kicker">Nosso álbum</p><h2 class="display-title" id="galeria-titulo">Memórias até aqui</h2></div>
-        <p>Fragmentos de uma história feita de dias comuns, viagens, risadas e da escolha diária de caminhar lado a lado.</p>
-      </div>
-      <div class="gallery-collage">
-        <!-- FOTO GALERIA 1 --><figure class="gallery-item ga"><img src="assets/detalhe-casal.jpg" alt="Detalhe afetivo do casal à beira-mar"></figure>
-        <!-- FOTO GALERIA 2 --><figure class="gallery-item gb"><img src="assets/casa-pier.jpg" alt="Entardecer no litoral"></figure>
-        <!-- FOTO GALERIA 3 --><figure class="gallery-item gc"><img src="assets/hero-casal.jpg" alt="Passeio do casal pela praia"></figure>
-        <!-- FOTO GALERIA 4 --><figure class="gallery-item gd"><img src="assets/casa-pier.jpg" alt="Vista do oceano ao pôr do sol"></figure>
-        <!-- FOTO GALERIA 5 --><figure class="gallery-item ge"><img src="assets/hero-casal.jpg" alt="Casal caminhando de mãos dadas"></figure>
-        <p class="hand gallery-note">a vida fica bonita quando compartilhada</p>
-      </div>
-      <div class="ribbon" aria-label="Tira editorial de fotografias">
-        <!-- FOTOS GALERIA FAIXA -->
-        <figure><img src="assets/hero-casal.jpg" alt="Caminhada na praia"></figure><figure><img src="assets/detalhe-casal.jpg" alt="Mãos entrelaçadas"></figure>
-        <figure><img src="assets/casa-pier.jpg" alt="Oceano ao entardecer"></figure><figure><img src="assets/hero-casal.jpg" alt="Casal junto ao mar"></figure>
-        <figure><img src="assets/detalhe-casal.jpg" alt="Tecidos ao vento na praia"></figure>
+    <section class="venue" id="local" aria-labelledby="local-title">
+      <div class="venue-photo reveal"><img src="assets/casa-pier.jpg" alt="Casa Pier à beira-mar, local do casamento"><span class="venue-tag">18 · 04 · 2027</span></div>
+      <div class="venue-copy reveal">
+        <p class="eyebrow">Onde será</p><h2 id="local-title">Casa Pier</h2><p class="venue-place">Espírito Santo</p><p>Um cenário de frente para o mar para celebrar o começo da nossa nova fase.</p>
+        <a class="button button-wine" href="https://www.google.com/maps/search/?api=1&amp;query=Casa+Pier+Esp%C3%ADrito+Santo" target="_blank" rel="noopener">Abrir rota no mapa</a>
+        <a class="map-preview" href="https://www.google.com/maps/search/?api=1&amp;query=Casa+Pier+Esp%C3%ADrito+Santo" target="_blank" rel="noopener" aria-label="Abrir Casa Pier no Google Maps"><span class="map-pin">S&amp;P</span><span class="map-line line-a"></span><span class="map-line line-b"></span><span class="map-line line-c"></span><small>Toque para traçar a rota</small></a>
       </div>
     </section>
 
-    <section class="gifts" id="presentes" aria-labelledby="presentes-titulo">
-      <div class="gifts-header reveal">
-        <div><p class="kicker">Com carinho</p><h2 class="display-title" id="presentes-titulo">Um presente para nossa nova história</h2></div>
-        <p>Se desejar nos presentear, preparamos algumas ideias com carinho.</p>
+    <section class="gallery" id="galeria" aria-labelledby="gallery-title">
+      <div class="gallery-heading reveal"><p class="eyebrow">Nosso álbum</p><h2 id="gallery-title">Memórias<br>até aqui.</h2><p>Clique em uma polaroide para olhar mais de perto.</p></div>
+      <div class="polaroid-wall" id="polaroid-wall">
+        <img class="gallery-watercolor" src="assets/watercolor-wildflowers.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+        <figure class="polaroid p1 reveal" tabindex="0" data-lightbox="assets/hero-casal.jpg" data-caption="Um passeio, uma vida inteira pela frente"><img src="assets/hero-casal.jpg" alt="Casal caminhando na praia"><figcaption>onde tudo começou</figcaption></figure>
+        <figure class="polaroid p2 reveal" tabindex="0" data-lightbox="assets/detalhe-casal.jpg" data-caption="Os pequenos gestos que guardamos"><img src="assets/detalhe-casal.jpg" alt="Mãos do casal entrelaçadas"><figcaption>meu lugar favorito</figcaption></figure>
+        <figure class="polaroid p3 reveal" tabindex="0" data-lightbox="assets/casa-pier.jpg" data-caption="O mar que será testemunha do nosso sim"><img src="assets/casa-pier.jpg" alt="Vista do mar na Casa Pier"><figcaption>contando os dias...</figcaption></figure>
+        <figure class="polaroid p4 reveal" tabindex="0" data-lightbox="assets/hero-casal.jpg" data-caption="Lado a lado, do nosso jeito"><img src="assets/hero-casal.jpg" alt="Casal junto ao mar"><figcaption>para sempre nós</figcaption></figure>
       </div>
+    </section>
+
+    <section class="gifts" id="presentes" aria-labelledby="gifts-title">
+      <div class="gifts-heading reveal"><div><p class="eyebrow">Lista de presentes</p><h2 id="gifts-title">Um carinho<br>para nossa casa.</h2></div><p>Sua presença é o maior presente. Se ainda assim quiser nos mimar, escolha uma lembrança e faça o pagamento com PIX.</p></div>
       <div class="grid-presentes" id="container-presentes" aria-live="polite"></div>
     </section>
 
-    <section class="rsvp" id="rsvp" aria-labelledby="rsvp-titulo">
-      <div class="rsvp-layout">
-        <div class="rsvp-copy reveal"><p class="kicker">Répondez s'il vous plaît</p><h2 class="display-title" id="rsvp-titulo">Esperamos você</h2><p>Sua presença é o que transforma uma data no calendário em uma memória para toda a vida.</p><p class="hand">venha celebrar conosco</p></div>
-        <div class="rsvp-box reveal">
-          <h3>Encontre seu convite</h3><p>Digite seu nome abaixo para encontrar seu convite.</p>
-          <div id="area-busca"><label class="eyebrow" for="nome-busca">Nome e sobrenome</label><input type="text" id="nome-busca" placeholder="Como está na lista" autocomplete="name"><p id="msg-erro" class="msg-erro" role="alert">Não encontramos este nome na lista VIP. Confira a escrita ou fale com os noivos.</p><button class="button" type="button" onclick="buscarConvidado()">Buscar convite</button></div>
-          <div id="area-confirmacao" hidden><p id="nome-encontrado"></p><p>Você confirma sua presença neste dia tão especial?</p><div class="rsvp-actions"><button class="button" type="button" onclick="confirmar(true)">Sim, eu vou</button><button class="button outline" type="button" onclick="confirmar(false)">Não poderei ir</button></div></div>
-        </div>
+    <section class="rsvp" id="rsvp" aria-labelledby="rsvp-title">
+      <div class="rsvp-photo reveal"><img src="assets/detalhe-casal.jpg" alt="Detalhe afetivo das mãos do casal"><span class="hand">esperamos você!</span></div>
+      <div class="rsvp-copy reveal">
+        <p class="eyebrow">Répondez s'il vous plaît</p><h2 id="rsvp-title">Confirme sua presença.</h2><p>Responda até 18 de março de 2027. Um formulário por família é suficiente.</p>
+        <form id="rsvp-form" class="pretty-form">
+          <label for="rsvp-name">Nome e sobrenome</label><input id="rsvp-name" name="name" type="text" autocomplete="name" maxlength="120" required placeholder="Como está no convite">
+          <fieldset><legend>Você estará com a gente?</legend><label class="choice"><input type="radio" name="attendance" value="sim" required><span>Sim, com alegria!</span></label><label class="choice"><input type="radio" name="attendance" value="nao"><span>Infelizmente não</span></label></fieldset>
+          <label for="rsvp-guests">Quantidade de pessoas</label><input id="rsvp-guests" name="guest_count" type="number" min="1" max="12" value="1" required>
+          <label for="rsvp-note">Observação <small>(opcional)</small></label><textarea id="rsvp-note" name="note" maxlength="500" placeholder="Restrição alimentar ou algo que precisamos saber"></textarea>
+          <input class="honeypot" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="button button-yellow" type="submit">Enviar confirmação</button><p class="form-status" id="rsvp-status" role="status" aria-live="polite"></p>
+        </form>
       </div>
+    </section>
+
+    <section class="message-section" id="mensagem" aria-labelledby="message-title">
+      <div class="message-heading reveal"><img class="identity-palm" src="assets/identity-palm.png" alt="" aria-hidden="true"><p class="eyebrow">Um pedacinho seu por aqui</p><h2 id="message-title">Deixe uma mensagem<br>para os noivos.</h2><p>Vamos guardar cada palavra com muito carinho.</p></div>
+      <form id="message-form" class="message-card reveal"><span class="tape" aria-hidden="true"></span><label for="message-name">Seu nome</label><input id="message-name" name="name" type="text" maxlength="120" required placeholder="Quem está escrevendo?"><label for="message-text">Sua mensagem</label><textarea id="message-text" name="message" maxlength="1200" required placeholder="Escreva aqui seu recado..."></textarea><input class="honeypot" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true"><button class="button button-wine" type="submit">Enviar com carinho</button><p class="form-status" id="message-status" role="status" aria-live="polite"></p></form>
     </section>
   </main>
 
   <footer class="site-footer">
-    <span class="footer-monogram">S &amp; P</span><p class="footer-date">18 · 04 · 2027</p><p>Casa Pier — Espírito Santo</p>
-    <p class="hand">Com amor, Stefany &amp; Pedro</p>
-    <div class="footer-meta"><span>Um dia para lembrar</span><button class="admin-open" type="button" onclick="toggleAdmin()" aria-controls="painel-admin" aria-expanded="false">Acesso do casal</button></div>
+    <img class="footer-palm" src="assets/identity-palm.png" alt=""><span class="footer-monogram">S <i>&amp;</i> P</span><p>18 · 04 · 2027</p><p>Casa Pier — Espírito Santo</p><p class="hand">Com amor, Stefany &amp; Pedro</p>
+    <div class="footer-meta"><span>Um dia colorido para guardar</span><button class="admin-open" type="button" onclick="toggleAdmin()" aria-controls="painel-admin" aria-expanded="false">Acesso do casal</button></div>
   </footer>
 
-  <div id="modal-pagamento" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="checkout-titulo">
-    <div class="modal-content"><button class="modal-close" type="button" onclick="fecharModal()" aria-label="Fechar pagamento">×</button>
-      <span class="modal-mark">S &amp; P</span><h2 id="checkout-titulo">Obrigado pelo carinho</h2><p id="resumo-compra"></p>
-      <div id="area-pix"><p class="eyebrow">Pagamento via PIX</p><p>Escaneie o QR Code no aplicativo do seu banco.</p><img id="qr-code-img" class="qr-code-img" src="" alt="QR Code PIX"><p id="aviso-valor-pix"></p><p>Ou use o PIX Copia e Cola:</p><button class="button outline" type="button" onclick="copiarPix()">Copiar código PIX</button></div>
-      <div id="area-cartao"><p>Prefere pagar com cartão de crédito?</p><a id="btn-link-pagamento" class="button" href="#" target="_blank" rel="noopener">Pagar com cartão</a></div>
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Foto ampliada" hidden><button class="lightbox-close" type="button" aria-label="Fechar foto">×</button><figure><img id="lightbox-image" src="" alt=""><figcaption id="lightbox-caption"></figcaption></figure></div>
+  <div id="modal-pagamento" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="checkout-title" hidden>
+    <div class="modal-content"><button class="modal-close" type="button" onclick="fecharModal()" aria-label="Fechar pagamento">×</button><span class="mini-monogram dark">S&amp;P</span><h2 id="checkout-title">Obrigado pelo carinho</h2><p id="resumo-compra"></p>
+      <div id="area-pix"><p class="eyebrow">Pagamento via PIX</p><p>Escaneie o QR Code no aplicativo do seu banco.</p><img id="qr-code-img" class="qr-code-img" src="" alt="QR Code PIX"><p id="aviso-valor-pix"></p><p>Ou use o PIX Copia e Cola:</p><button class="button button-wine" type="button" onclick="copiarPix()">Copiar código PIX</button></div>
+      <div id="area-cartao" hidden><p>Prefere pagar com cartão?</p><a id="btn-link-pagamento" class="button button-wine" href="#" target="_blank" rel="noopener">Pagar com cartão</a></div>
     </div>
   </div>
 
-  <section id="painel-admin" class="admin-panel" aria-labelledby="admin-titulo">
+  <section id="painel-admin" class="admin-panel" aria-labelledby="admin-title" hidden>
     <div class="admin-inner">
-      <div class="admin-header"><div><h2 id="admin-titulo">Painel do casal</h2><p>Os presentes são sincronizados com segurança pelo Supabase.</p></div><button class="button outline" type="button" onclick="toggleAdmin()">Fechar painel</button></div>
+      <div class="admin-header"><div><h2 id="admin-title">Painel do casal</h2><p>Presentes, PIX, confirmações e mensagens em um só lugar.</p></div><button class="button admin-close" type="button" onclick="toggleAdmin()">Fechar painel</button></div>
       <div class="admin-grid">
-        <section class="admin-card wide"><h3>Acesso seguro aos presentes</h3><div id="admin-desconectado"><p>Entre com o usuário administrador do Supabase para adicionar ou excluir presentes.</p><form id="form-admin-login" class="admin-login"><div><label for="admin-email">E-mail</label><input type="email" id="admin-email" autocomplete="username" required></div><div><label for="admin-senha">Senha</label><input type="password" id="admin-senha" autocomplete="current-password" required></div><button class="button" type="submit">Entrar</button></form></div><div id="admin-conectado" class="admin-session" hidden><p>Conectado como <strong id="admin-email-logado"></strong></p><button class="button outline" type="button" onclick="sairAdmin()">Sair</button></div><p id="admin-auth-status" class="admin-status" role="status" aria-live="polite"></p></section>
-        <section class="admin-card wide"><h3>Configuração global do PIX</h3><p>Abra o aplicativo do banco, crie um código PIX sem valor definido e cole abaixo o texto “Copia e Cola”. Depois de salvo, o mesmo código será carregado para todos os convidados e dispositivos.</p><label for="config-pix">Código PIX Copia e Cola</label><input type="text" id="config-pix" placeholder="Cole o código PIX completo"><button class="button" id="btn-salvar-pix" type="button" onclick="salvarPix()" disabled>Salvar PIX para todos</button><p id="pix-admin-status" class="admin-status" role="status" aria-live="polite"></p></section>
-        <section class="admin-card"><h3>Lista VIP de convidados</h3><form id="form-add-convidado" class="admin-inline"><div><label for="nome-novo-convidado">Nome do convidado</label><input type="text" id="nome-novo-convidado" placeholder="Nome e sobrenome" required></div><button class="button" type="submit">Adicionar</button></form><div id="lista-admin-convidados"></div></section>
-        <section class="admin-card"><h3 id="titulo-form-presente">Novo presente</h3><p><strong>Lista global conectada ao Supabase.</strong> Use “Editar” em um presente existente ou preencha o formulário para criar outro. Quando houver link de loja, o site procura e armazena a foto automaticamente.</p><form id="form-add-presente"><label for="nome-prod">Nome do presente</label><input type="text" id="nome-prod" required><label for="valor-prod">Valor total em reais</label><input type="number" id="valor-prod" min="0.01" step="0.01" required><label for="cotas-prod">Quantidade de cotas</label><input type="number" id="cotas-prod" min="1" step="1" required><label for="link-pgto-prod">Link do produto (opcional)</label><input type="url" id="link-pgto-prod" placeholder="https://..."><label for="imagem-prod">Nova imagem manual (opcional)</label><input type="url" id="imagem-prod" placeholder="https://..."><div id="image-preview-admin" class="image-preview-admin" hidden><img id="image-preview-admin-img" src="" alt="Prévia da foto do presente"><span id="image-preview-admin-text"></span></div><div class="admin-form-actions"><button class="button" id="btn-salvar-presente" type="submit" disabled>Publicar presente</button><button class="button outline" id="btn-cancelar-edicao" type="button" onclick="cancelarEdicaoPresente()" hidden>Cancelar edição</button></div><p id="presente-admin-status" class="admin-status" role="status" aria-live="polite"></p></form><div id="lista-admin-presentes"></div></section>
+        <section class="admin-card wide"><h3>Acesso seguro</h3><div id="admin-desconectado"><p>Entre com o usuário administrador do Supabase.</p><form id="form-admin-login" class="admin-login"><div><label for="admin-email">E-mail</label><input type="email" id="admin-email" autocomplete="username" required></div><div><label for="admin-senha">Senha</label><input type="password" id="admin-senha" autocomplete="current-password" required></div><button class="button" type="submit">Entrar</button></form></div><div id="admin-conectado" class="admin-session" hidden><p>Conectado como <strong id="admin-email-logado"></strong></p><button class="button" type="button" onclick="sairAdmin()">Sair</button></div><p id="admin-auth-status" class="admin-status" role="status"></p></section>
+        <section class="admin-card"><h3>PIX global</h3><label for="config-pix">Código PIX Copia e Cola</label><input type="text" id="config-pix"><button class="button" id="btn-salvar-pix" type="button" onclick="salvarPix()" disabled>Salvar PIX</button><p id="pix-admin-status" class="admin-status"></p></section>
+        <section class="admin-card"><h3 id="titulo-form-presente">Novo presente</h3><form id="form-add-presente"><label for="nome-prod">Nome</label><input type="text" id="nome-prod" required><label for="valor-prod">Valor total</label><input type="number" id="valor-prod" min="0.01" step="0.01" required><label for="cotas-prod">Cotas</label><input type="number" id="cotas-prod" min="1" required><label for="link-pgto-prod">Link do produto</label><input type="url" id="link-pgto-prod"><label for="imagem-prod">Imagem manual</label><input type="url" id="imagem-prod"><div id="image-preview-admin" class="image-preview-admin" hidden><img id="image-preview-admin-img" src="" alt="Prévia"><span id="image-preview-admin-text"></span></div><div class="admin-form-actions"><button class="button" id="btn-salvar-presente" type="submit" disabled>Publicar presente</button><button class="button" id="btn-cancelar-edicao" type="button" onclick="cancelarEdicaoPresente()" hidden>Cancelar</button></div><p id="presente-admin-status" class="admin-status"></p></form><div id="lista-admin-presentes"></div></section>
+        <section class="admin-card wide"><div class="admin-list-header"><h3>Confirmações</h3><button class="button" type="button" onclick="carregarRespostasAdmin()">Atualizar</button></div><div id="lista-admin-rsvp"><p>Entre para carregar.</p></div></section>
+        <section class="admin-card wide"><div class="admin-list-header"><h3>Mensagens recebidas</h3><button class="button" type="button" onclick="carregarMensagensAdmin()">Atualizar</button></div><div id="lista-admin-mensagens"><p>Entre para carregar.</p></div></section>
       </div>
     </div>
   </section>
 
-  <script>
-    'use strict';
-    const formatarMoeda=valor=>Number(valor).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
-    /* Supabase: a chave publicável pode ficar no navegador; o acesso é protegido por RLS. */
-    const SUPABASE_URL='https://jzqhjoudeetjrhlhiaho.supabase.co';
-    const SUPABASE_PUBLISHABLE_KEY='sb_publishable_LHfM8AdX_u2PzdQPk7CZyQ_e8fEkcpl';
-    function lerListaSalva(chave,padrao){try{const valor=JSON.parse(localStorage.getItem(chave));return Array.isArray(valor)?valor:padrao}catch(erro){return padrao}}
-    function escaparHtml(texto){const elemento=document.createElement('div');elemento.textContent=String(texto);return elemento.innerHTML}
-
-    /* SESSÃO ADMINISTRATIVA — mantida somente enquanto esta aba estiver aberta. */
-    let sessaoAdmin;
-    try{sessaoAdmin=JSON.parse(sessionStorage.getItem('sessaoAdminSupabase'))||null}catch(erro){sessaoAdmin=null}
-    function mensagemAdmin(texto,erro=false){const area=document.getElementById('admin-auth-status');area.textContent=texto;area.classList.toggle('error',erro)}
-    function guardarSessaoAdmin(dados){
-      sessaoAdmin={access_token:dados.access_token,refresh_token:dados.refresh_token,user:dados.user,expires_at:Date.now()+(Number(dados.expires_in)||3600)*1000};
-      sessionStorage.setItem('sessaoAdminSupabase',JSON.stringify(sessaoAdmin));atualizarInterfaceAdmin();
-    }
-    function limparSessaoAdmin(){sessaoAdmin=null;sessionStorage.removeItem('sessaoAdminSupabase');atualizarInterfaceAdmin()}
-    function atualizarInterfaceAdmin(){
-      const conectado=Boolean(sessaoAdmin&&sessaoAdmin.access_token),desconectado=document.getElementById('admin-desconectado'),areaConectada=document.getElementById('admin-conectado');
-      desconectado.hidden=conectado;areaConectada.hidden=!conectado;document.getElementById('admin-email-logado').textContent=conectado?(sessaoAdmin.user?.email||'administrador'):'';
-      document.getElementById('btn-salvar-presente').disabled=!conectado;
-      document.getElementById('btn-salvar-pix').disabled=!conectado;
-      document.querySelectorAll('.btn-excluir-presente,.btn-editar-presente').forEach(botao=>botao.disabled=!conectado);
-    }
-    async function renovarSessaoAdmin(){
-      if(!sessaoAdmin?.refresh_token)return null;
-      const resposta=await fetch(SUPABASE_URL+'/auth/v1/token?grant_type=refresh_token',{method:'POST',headers:{apikey:SUPABASE_PUBLISHABLE_KEY,'Content-Type':'application/json'},body:JSON.stringify({refresh_token:sessaoAdmin.refresh_token})});
-      if(!resposta.ok){limparSessaoAdmin();return null}const dados=await resposta.json();guardarSessaoAdmin(dados);return sessaoAdmin.access_token;
-    }
-    async function tokenAdmin(){if(!sessaoAdmin?.access_token)return null;if(Number(sessaoAdmin.expires_at)>Date.now()+60000)return sessaoAdmin.access_token;return renovarSessaoAdmin()}
-    async function contaEhAdministradora(token,userId){
-      const resposta=await fetch(SUPABASE_URL+'/rest/v1/site_admins?select=user_id&user_id=eq.'+encodeURIComponent(userId)+'&limit=1',{headers:{apikey:SUPABASE_PUBLISHABLE_KEY,Authorization:'Bearer '+token}});
-      return resposta.ok&&(await resposta.json()).length>0;
-    }
-    document.getElementById('form-admin-login').addEventListener('submit',async function(evento){
-      evento.preventDefault();const botao=this.querySelector('button[type=submit]');botao.disabled=true;mensagemAdmin('Entrando...');
-      try{
-        const resposta=await fetch(SUPABASE_URL+'/auth/v1/token?grant_type=password',{method:'POST',headers:{apikey:SUPABASE_PUBLISHABLE_KEY,'Content-Type':'application/json'},body:JSON.stringify({email:document.getElementById('admin-email').value.trim(),password:document.getElementById('admin-senha').value})});
-        const dados=await resposta.json();if(!resposta.ok)throw new Error(dados.error_description||dados.msg||'E-mail ou senha inválidos.');
-        if(!(await contaEhAdministradora(dados.access_token,dados.user.id)))throw new Error('Esta conta existe, mas ainda não foi autorizada em site_admins.');
-        guardarSessaoAdmin(dados);this.reset();mensagemAdmin('Acesso liberado. Agora você pode publicar e excluir presentes.');
-      }catch(erro){limparSessaoAdmin();mensagemAdmin(erro.message||'Não foi possível entrar.',true)}finally{botao.disabled=false;atualizarInterfaceAdmin()}
-    });
-    async function sairAdmin(){const token=await tokenAdmin();if(token)fetch(SUPABASE_URL+'/auth/v1/logout',{method:'POST',headers:{apikey:SUPABASE_PUBLISHABLE_KEY,Authorization:'Bearer '+token}}).catch(()=>{});limparSessaoAdmin();mensagemAdmin('Sessão encerrada.')}
-    async function restaurarSessaoAdmin(){
-      atualizarInterfaceAdmin();if(!sessaoAdmin)return;const token=await tokenAdmin();if(!token||!(await contaEhAdministradora(token,sessaoAdmin.user.id))){limparSessaoAdmin();mensagemAdmin('Entre novamente para administrar os presentes.',true);return}atualizarInterfaceAdmin();mensagemAdmin('Sessão administrativa restaurada.');
-    }
-
-    /* CONFIGURAÇÃO PIX GLOBAL — localStorage permanece apenas como cache de emergência. */
-    let chavePixCasal=localStorage.getItem('chavePix')||'';
-    document.getElementById('config-pix').value=chavePixCasal;
-    function statusPix(texto,erro=false){const area=document.getElementById('pix-admin-status');area.textContent=texto;area.classList.toggle('error',erro)}
-    async function carregarPixGlobal(){
-      try{
-        const resposta=await fetch(SUPABASE_URL+'/rest/v1/site_settings?select=setting_value&setting_key=eq.pix_key&limit=1',{headers:{apikey:SUPABASE_PUBLISHABLE_KEY}});if(!resposta.ok)throw new Error('Falha ao carregar o PIX global.');const dados=await resposta.json();
-        if(dados.length){chavePixCasal=dados[0].setting_value;localStorage.setItem('chavePix',chavePixCasal);document.getElementById('config-pix').value=chavePixCasal;statusPix('PIX global carregado do Supabase.')}
-      }catch(erro){console.warn('Usando o PIX salvo neste navegador como contingência.',erro);statusPix('Não foi possível carregar o PIX global; usando o cache deste navegador.',true)}
-    }
-    async function salvarPix(){
-      const token=await tokenAdmin(),botao=document.getElementById('btn-salvar-pix'),valor=document.getElementById('config-pix').value.trim();if(!token){mensagemAdmin('Entre antes de salvar o PIX.',true);return}if(!valor){statusPix('Cole um código PIX antes de salvar.',true);return}
-      botao.disabled=true;statusPix('Salvando para todos...');
-      try{
-        const resposta=await fetch(SUPABASE_URL+'/rest/v1/site_settings?on_conflict=setting_key',{method:'POST',headers:{apikey:SUPABASE_PUBLISHABLE_KEY,Authorization:'Bearer '+token,'Content-Type':'application/json',Prefer:'resolution=merge-duplicates,return=representation'},body:JSON.stringify({setting_key:'pix_key',setting_value:valor,updated_at:new Date().toISOString()})});const dados=await resposta.json().catch(()=>({}));if(!resposta.ok)throw new Error(dados.message||'O Supabase não permitiu salvar o PIX.');
-        chavePixCasal=valor;localStorage.setItem('chavePix',valor);statusPix('PIX salvo globalmente. Todos os convidados receberão este código.');
-      }catch(erro){statusPix(erro.message||'Não foi possível salvar o PIX.',true)}finally{botao.disabled=!sessaoAdmin}
-    }
-
-    /* PRESENTES, COTAS E CHECKOUT — preserva a chave: listaPresentes */
-    let presentesAtuais=lerListaSalva('listaPresentes',[]);
-    async function carregarPresentesGlobais(){
-      const site=document.getElementById('container-presentes');
-      site.innerHTML='<div class="empty-gifts"><p class="hand">Só um instante...</p><p>Estamos abrindo nossa lista de presentes.</p></div>';
-      try{
-        const resposta=await fetch(SUPABASE_URL+'/rest/v1/gifts?select=id,name,total_value,total_quotas,card_link,image_url,sort_order&active=eq.true&order=sort_order.asc,id.asc',{
-          headers:{apikey:SUPABASE_PUBLISHABLE_KEY}
-        });
-        if(!resposta.ok)throw new Error('Supabase respondeu com status '+resposta.status);
-        const presentesGlobais=await resposta.json();
-        presentesAtuais=presentesGlobais.map(presente=>({
-          id:Number(presente.id),
-          nome:presente.name,
-          valorTotal:Number(presente.total_value),
-          totalCotas:Number(presente.total_quotas),
-          linkCartao:presente.card_link||'',
-          imagem:presente.image_url||'',
-          ordem:Number(presente.sort_order)||0
-        }));
-        site.dataset.source='supabase';
-        renderizarPresentes();
-      }catch(erro){
-        console.warn('Não foi possível carregar a lista global; usando o cache local.',erro);
-        site.dataset.source='local';
-        renderizarPresentes();
-      }
-    }
-    let presenteEditando=null;
-    function renderizarPresentes(){
-      const site=document.getElementById('container-presentes'),admin=document.getElementById('lista-admin-presentes');
-      site.innerHTML='';admin.innerHTML='';
-      if(!presentesAtuais.length){site.innerHTML='<div class="empty-gifts"><p class="hand">Estamos preparando cada detalhe com carinho.</p><p>A lista de presentes estará disponível em breve.</p></div>';admin.innerHTML='<p>Nenhum presente cadastrado.</p>'}
-      presentesAtuais.forEach((presente,index)=>{
-        const cota=Number(presente.valorTotal)/Number(presente.totalCotas),nome=escaparHtml(presente.nome);
-        const imagem=presente.imagem?'<figure class="gift-image"><img src="'+escaparHtml(presente.imagem)+'" alt="'+nome+'" loading="lazy" decoding="async" onerror="this.closest(\'.gift-image\').classList.add(\'gift-image-placeholder\');this.remove()"></figure>':'<div class="gift-image gift-image-placeholder"><span>com carinho</span></div>';
-        site.insertAdjacentHTML('beforeend','<article class="card-presente reveal">'+imagem+'<span class="gift-number">PRESENTE '+String(index+1).padStart(2,'0')+'</span><h3>'+nome+'</h3><div class="info-preco"><p>Valor total<br>'+formatarMoeda(presente.valorTotal)+'</p><p class="quota">'+formatarMoeda(cota)+' <small>/ cota</small></p></div><div class="controle-cotas"><label for="qtd-'+presente.id+'">Quantas cotas?</label><input type="number" id="qtd-'+presente.id+'" min="1" max="'+presente.totalCotas+'" value="1" inputmode="numeric"></div><button class="button" type="button" onclick="abrirCheckout('+index+','+cota+')">Escolher presente</button></article>');
-        const desabilitado=sessaoAdmin?'':' disabled';
-        admin.insertAdjacentHTML('beforeend','<div class="item-admin"><div><strong>'+nome+'</strong><small>'+presente.totalCotas+' cotas · '+formatarMoeda(presente.valorTotal)+'</small></div><div class="item-admin-actions"><button class="btn-editar btn-editar-presente" type="button" onclick="editarPresente('+Number(presente.id)+')"'+desabilitado+'>Editar</button><button class="btn-excluir btn-excluir-presente" type="button" onclick="excluirPresente('+Number(presente.id)+')"'+desabilitado+'>Excluir</button></div></div>');
-      });
-      localStorage.setItem('listaPresentes',JSON.stringify(presentesAtuais));observarEntradas();
-    }
-    function statusPresente(texto,erro=false){const area=document.getElementById('presente-admin-status');area.textContent=texto;area.classList.toggle('error',erro)}
-    function mostrarPreviaImagem(url,texto){const area=document.getElementById('image-preview-admin'),imagem=document.getElementById('image-preview-admin-img');imagem.src=url;document.getElementById('image-preview-admin-text').textContent=texto;area.hidden=false}
-    function editarPresente(id){
-      if(!sessaoAdmin){mensagemAdmin('Entre antes de editar um presente.',true);return}const presente=presentesAtuais.find(p=>Number(p.id)===Number(id));if(!presente)return;presenteEditando={...presente};
-      document.getElementById('titulo-form-presente').textContent='Editar presente';document.getElementById('nome-prod').value=presente.nome;document.getElementById('valor-prod').value=presente.valorTotal;document.getElementById('cotas-prod').value=presente.totalCotas;document.getElementById('link-pgto-prod').value=presente.linkCartao;document.getElementById('imagem-prod').value='';
-      document.getElementById('btn-salvar-presente').textContent='Salvar alterações';document.getElementById('btn-cancelar-edicao').hidden=false;if(presente.imagem)mostrarPreviaImagem(presente.imagem,'Imagem atual — será mantida se o link não mudar.');else document.getElementById('image-preview-admin').hidden=true;statusPresente('Editando “'+presente.nome+'”.');document.getElementById('form-add-presente').scrollIntoView({behavior:'smooth',block:'center'});document.getElementById('nome-prod').focus();
-    }
-    function cancelarEdicaoPresente(){
-      presenteEditando=null;const form=document.getElementById('form-add-presente');form.reset();document.getElementById('titulo-form-presente').textContent='Novo presente';document.getElementById('btn-salvar-presente').textContent='Publicar presente';document.getElementById('btn-cancelar-edicao').hidden=true;document.getElementById('image-preview-admin').hidden=true;statusPresente('');
-    }
-    async function buscarImagemProduto(link,token){
-      const resposta=await fetch(SUPABASE_URL+'/functions/v1/product-image',{method:'POST',headers:{apikey:SUPABASE_PUBLISHABLE_KEY,Authorization:'Bearer '+token,'Content-Type':'application/json'},body:JSON.stringify({url:link})});
-      const dados=await resposta.json().catch(()=>({}));if(!resposta.ok)throw new Error(dados.error||'Não foi possível obter a foto automaticamente.');return dados;
-    }
-    document.getElementById('form-add-presente').addEventListener('submit',async function(evento){
-      evento.preventDefault();const botao=document.getElementById('btn-salvar-presente'),token=await tokenAdmin();if(!token){mensagemAdmin('Entre antes de salvar um presente.',true);return}
-      const nome=document.getElementById('nome-prod').value.trim(),valor=parseFloat(document.getElementById('valor-prod').value),cotas=parseInt(document.getElementById('cotas-prod').value,10),link=document.getElementById('link-pgto-prod').value.trim();let imagem=document.getElementById('imagem-prod').value.trim();
-      const editando=presenteEditando;botao.disabled=true;this.setAttribute('aria-busy','true');statusPresente(!imagem&&link&&(!editando||link!==editando.linkCartao)?'Buscando a foto do produto...':'Salvando presente...');
-      try{
-        if(!imagem&&editando&&link===editando.linkCartao)imagem=editando.imagem;
-        if(!imagem&&link){const metadados=await buscarImagemProduto(link,token);imagem=metadados.image_url;mostrarPreviaImagem(imagem,'Foto encontrada e salva no Supabase Storage.');statusPresente('Foto encontrada. Salvando presente...')}
-        const corpo={name:nome,total_value:valor,total_quotas:cotas,card_link:link||null,image_url:imagem||null,active:true,updated_at:new Date().toISOString()};let metodo='POST',url=SUPABASE_URL+'/rest/v1/gifts?select=id,name,total_value,total_quotas,card_link,image_url,sort_order,active';
-        if(editando){metodo='PATCH';url=SUPABASE_URL+'/rest/v1/gifts?id=eq.'+encodeURIComponent(editando.id)+'&select=id,name,total_value,total_quotas,card_link,image_url,sort_order,active'}else corpo.sort_order=Math.max(0,...presentesAtuais.map(p=>Number(p.ordem)||0))+10;
-        const resposta=await fetch(url,{method:metodo,headers:{apikey:SUPABASE_PUBLISHABLE_KEY,Authorization:'Bearer '+token,'Content-Type':'application/json',Prefer:'return=representation'},body:JSON.stringify(corpo)});const dados=await resposta.json().catch(()=>({}));if(!resposta.ok)throw new Error(dados.message||dados.details||'O Supabase não permitiu salvar o presente.');
-        cancelarEdicaoPresente();await carregarPresentesGlobais();statusPresente(editando?'Alterações salvas para todos.':'Presente publicado para todos com sucesso.');
-      }catch(erro){statusPresente((erro.message||'Não foi possível salvar.')+(link?' Se a loja bloqueou a busca, cole uma imagem manual.':''),true)}finally{this.removeAttribute('aria-busy');botao.disabled=!sessaoAdmin}
-    });
-    async function excluirPresente(id){
-      const token=await tokenAdmin();if(!token){mensagemAdmin('Entre antes de excluir um presente.',true);return}const presente=presentesAtuais.find(p=>Number(p.id)===Number(id));if(!presente||!confirm('Excluir “'+presente.nome+'” da lista pública?'))return;
-      const resposta=await fetch(SUPABASE_URL+'/rest/v1/gifts?id=eq.'+encodeURIComponent(id),{method:'DELETE',headers:{apikey:SUPABASE_PUBLISHABLE_KEY,Authorization:'Bearer '+token}});if(!resposta.ok){statusPresente('Não foi possível excluir o presente.',true);return}if(presenteEditando&&Number(presenteEditando.id)===Number(id))cancelarEdicaoPresente();await carregarPresentesGlobais();statusPresente('Presente excluído da lista pública.');
-    }
-    function abrirCheckout(index,valorCota){
-      const presente=presentesAtuais[index];if(!presente)return;
-      const campo=document.getElementById('qtd-'+presente.id),max=Math.max(1,Number(presente.totalCotas)),qtd=Math.min(max,Math.max(1,parseInt(campo.value,10)||1)),total=Number(valorCota)*qtd;campo.value=qtd;
-      document.getElementById('resumo-compra').innerHTML='<strong>'+qtd+' cota(s)</strong> de <strong>'+escaparHtml(presente.nome)+'</strong><span class="total">'+formatarMoeda(total)+'</span>';
-      document.getElementById('aviso-valor-pix').textContent='Ao ler o QR Code, informe o valor exato de '+formatarMoeda(total)+' no seu banco.';
-      const qr=document.getElementById('qr-code-img'),pix=document.getElementById('area-pix');
-      if(chavePixCasal){qr.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data='+encodeURIComponent(chavePixCasal);qr.style.display='block';pix.style.display='block'}else{qr.style.display='none';pix.style.display='none'}
-      const cartao=document.getElementById('area-cartao'),link=document.getElementById('btn-link-pagamento');
-      if(presente.linkCartao){cartao.style.display='block';link.href=presente.linkCartao}else{cartao.style.display='none';link.href='#'}
-      const modal=document.getElementById('modal-pagamento');modal.style.display='flex';document.body.classList.add('modal-open');modal.querySelector('.modal-close').focus();
-    }
-    function fecharModal(){document.getElementById('modal-pagamento').style.display='none';document.body.classList.remove('modal-open')}
-    async function copiarPix(){if(!chavePixCasal){alert('O código PIX ainda não foi configurado pelos noivos.');return}try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(chavePixCasal)}else{const campo=document.createElement('textarea');campo.value=chavePixCasal;campo.style.position='fixed';campo.style.opacity='0';document.body.appendChild(campo);campo.select();document.execCommand('copy');campo.remove()}alert("Código PIX copiado. No banco, escolha 'PIX Copia e Cola' e informe o valor do presente.")}catch(erro){alert('Não foi possível copiar. Tente escanear o QR Code.')}}
-
-    /* LISTA VIP E RSVP — preserva a chave: listaVip */
-    let listaVip=lerListaSalva('listaVip',['Stefany','Pedro']);
-    const normalizar=texto=>texto.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim().replace(/\s+/g,' ');
-    function buscarConvidado(){const campo=document.getElementById('nome-busca'),nome=campo.value;if(!nome.trim()){campo.focus();return}const achou=listaVip.find(v=>normalizar(v)===normalizar(nome));if(achou){document.getElementById('msg-erro').style.display='none';document.getElementById('area-busca').hidden=true;document.getElementById('area-confirmacao').hidden=false;document.getElementById('nome-encontrado').textContent='Olá, '+achou+'!'}else document.getElementById('msg-erro').style.display='block'}
-    function confirmar(vai){alert(vai?'Que alegria! Sua presença foi confirmada na nossa Lista VIP.':'Sentiremos sua falta. Obrigado por avisar!');document.getElementById('area-busca').hidden=false;document.getElementById('area-confirmacao').hidden=true;document.getElementById('nome-busca').value='';document.getElementById('nome-busca').focus()}
-    function renderizarConvidados(){const area=document.getElementById('lista-admin-convidados');area.innerHTML='';if(!listaVip.length)area.innerHTML='<p>Nenhum convidado cadastrado.</p>';listaVip.forEach((nome,index)=>area.insertAdjacentHTML('beforeend','<div class="item-admin"><span>'+escaparHtml(nome)+'</span><button class="btn-excluir" type="button" onclick="excluirConvidado('+index+')">Remover</button></div>'));localStorage.setItem('listaVip',JSON.stringify(listaVip))}
-    document.getElementById('form-add-convidado').addEventListener('submit',function(evento){evento.preventDefault();const campo=document.getElementById('nome-novo-convidado'),nome=campo.value.trim();if(!nome)return;listaVip.push(nome);renderizarConvidados();this.reset()});
-    function excluirConvidado(index){listaVip.splice(index,1);renderizarConvidados()}
-    function toggleAdmin(){const painel=document.getElementById('painel-admin'),abrir=getComputedStyle(painel).display==='none';painel.style.display=abrir?'block':'none';document.querySelectorAll('[onclick="toggleAdmin()"]').forEach(b=>b.setAttribute('aria-expanded',String(abrir)));if(abrir)painel.scrollIntoView({behavior:'smooth',block:'start'})}
-
-    /* Menu, acessibilidade e animações */
-    const menuToggle=document.querySelector('.menu-toggle'),navLinks=document.getElementById('nav-links');
-    menuToggle.addEventListener('click',()=>{const abrir=!navLinks.classList.contains('open');navLinks.classList.toggle('open',abrir);menuToggle.classList.toggle('open',abrir);menuToggle.setAttribute('aria-expanded',String(abrir));menuToggle.setAttribute('aria-label',abrir?'Fechar menu':'Abrir menu')});
-    navLinks.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{navLinks.classList.remove('open');menuToggle.classList.remove('open');menuToggle.setAttribute('aria-expanded','false')}));
-    document.getElementById('nome-busca').addEventListener('keydown',e=>{if(e.key==='Enter')buscarConvidado()});
-    document.getElementById('modal-pagamento').addEventListener('click',e=>{if(e.target.id==='modal-pagamento')fecharModal()});
-    document.addEventListener('keydown',e=>{if(e.key==='Escape'){fecharModal();navLinks.classList.remove('open');menuToggle.classList.remove('open');menuToggle.setAttribute('aria-expanded','false')}});
-    const galeria=document.querySelector('.gallery-collage'),fotosGaleria=[...document.querySelectorAll('.gallery-item')],notaGaleria=document.querySelector('.gallery-note');let quadroGaleria=0;
-    function limitar(valor,minimo=0,maximo=1){return Math.min(maximo,Math.max(minimo,valor))}
-    function animarGaleria(){
-      quadroGaleria=0;if(!galeria||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-      const caixa=galeria.getBoundingClientRect(),inicio=innerHeight*.82-galeria.clientHeight/2,fim=innerHeight*.04,progresso=limitar((inicio-caixa.top)/(inicio-fim)),larguraPilha=innerWidth<761?145:190;
-      fotosGaleria.forEach((foto,indice)=>{
-        const atraso=indice*.035,local=limitar((progresso-atraso)/(1-atraso)),suave=local*local*(3-2*local),centroX=galeria.clientWidth/2-(foto.offsetLeft+foto.offsetWidth/2),centroY=galeria.clientHeight/2-(foto.offsetTop+foto.offsetHeight/2),escalaInicial=Math.min(.92,larguraPilha/foto.offsetWidth),escala=escalaInicial+(1-escalaInicial)*suave,rotacaoFinal=Number(getComputedStyle(foto).getPropertyValue('--final-rotation'))||0,rotacoesPilha=[-7,-3,4,7,-1],rotacao=rotacoesPilha[indice]+(rotacaoFinal-rotacoesPilha[indice])*suave;
-        foto.style.transform='translate('+(centroX*(1-suave)).toFixed(2)+'px,'+(centroY*(1-suave)).toFixed(2)+'px) rotate('+rotacao.toFixed(2)+'deg) scale('+escala.toFixed(3)+')';
-      });
-      if(notaGaleria)notaGaleria.style.setProperty('--note-opacity',limitar((progresso-.62)/.28).toFixed(3));
-    }
-    function solicitarAnimacaoGaleria(){if(!quadroGaleria)quadroGaleria=requestAnimationFrame(animarGaleria)}
-    if(galeria&&!matchMedia('(prefers-reduced-motion:reduce)').matches){document.documentElement.classList.add('gallery-motion-ready');addEventListener('scroll',solicitarAnimacaoGaleria,{passive:true});addEventListener('resize',solicitarAnimacaoGaleria);animarGaleria()}
-    let observador;
-    function observarEntradas(){const itens=document.querySelectorAll('.reveal:not([data-seen])');if(!('IntersectionObserver'in window)||matchMedia('(prefers-reduced-motion:reduce)').matches){itens.forEach(i=>i.classList.add('visible'));return}if(!observador)observador=new IntersectionObserver(entradas=>entradas.forEach(entrada=>{if(entrada.isIntersecting){entrada.target.classList.add('visible');observador.unobserve(entrada.target)}}),{threshold:.12,rootMargin:'0px 0px -35px'});itens.forEach(i=>{i.dataset.seen='true';observador.observe(i)})}
-    restaurarSessaoAdmin();carregarPixGlobal();carregarPresentesGlobais();renderizarConvidados();observarEntradas();
-  </script>
+  <script src="app.js"></script>
 </body>
 </html>
