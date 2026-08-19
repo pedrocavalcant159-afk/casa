@@ -31,7 +31,7 @@ function observarEntradas(){const itens=document.querySelectorAll('.reveal:not([
 const paredePolaroides=document.getElementById('polaroid-wall');
 const polaroidesScroll=[...paredePolaroides.querySelectorAll('.polaroid')];
 let quadroPolaroides;
-function atualizarPolaroidesNoScroll(){quadroPolaroides=0;if(reduzirMovimento)return;const parede=paredePolaroides.getBoundingClientRect();const alcance=Math.max(innerHeight*.82,520);polaroidesScroll.forEach((foto,indice)=>{const topoOriginal=parede.top+foto.offsetTop;const progresso=Math.min(1,Math.max(0,(innerHeight*.74-topoOriginal)/alcance));const saida=Math.pow(progresso,1.7);const direcao=indice%2===0?-1:1;const distancia=innerWidth*.92+foto.offsetWidth;foto.style.setProperty('--drift-x',`${direcao*saida*distancia}px`);foto.style.setProperty('--drift-y',`${(indice%2===0?1:-1)*saida*58}px`);foto.style.setProperty('--drift-turn',`${direcao*saida*(13+indice*2)}deg`)})}
+function atualizarPolaroidesNoScroll(){quadroPolaroides=0;if(reduzirMovimento)return;const parede=paredePolaroides.getBoundingClientRect();const alcance=Math.max(innerHeight*.65,430);polaroidesScroll.forEach(foto=>{const topoOriginal=parede.top+foto.offsetTop;const progresso=Math.min(1,Math.max(0,(innerHeight*.9-topoOriginal)/alcance));const suave=progresso*progresso*(3-2*progresso);foto.style.setProperty('--scroll-scale',String(.72+suave*.28))})}
 function agendarPolaroides(){if(!quadroPolaroides)quadroPolaroides=requestAnimationFrame(atualizarPolaroidesNoScroll)}
 if(!reduzirMovimento){addEventListener('scroll',agendarPolaroides,{passive:true});addEventListener('resize',agendarPolaroides);requestAnimationFrame(atualizarPolaroidesNoScroll)}
 
