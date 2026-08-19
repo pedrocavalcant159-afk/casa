@@ -38,7 +38,7 @@
       </div>
       <div class="hero-shade"></div>
       <div class="hero-content reveal">
-        <div class="hero-year"><span>2027</span><span class="mini-monogram">S&amp;P</span><span>2027</span></div>
+        <div class="hero-year"><span>2027</span><img class="brand-monogram hero-monogram" src="assets/monogram-sp.png" alt="Monograma de Stefany e Pedro"><span>2027</span></div>
         <h1><span>Stefany</span><i>&amp;</i><span>Pedro</span></h1>
         <p class="hero-date">18 · 04 · 2027</p>
         <button class="sound-toggle" id="sound-toggle" type="button" aria-pressed="false" hidden><span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i></span><span id="sound-label">Ativar som</span></button>
@@ -47,7 +47,8 @@
     </header>
 
     <section class="save-date paper-section" id="save-the-date" aria-labelledby="save-title">
-      <img class="save-watercolor" src="assets/watercolor-wildflowers.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <img class="save-floral save-floral-left" src="assets/watercolor-flowers-simple.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <img class="save-floral save-floral-right" src="assets/watercolor-flowers-simple.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
       <div class="save-inner reveal">
         <img class="identity-palm" src="assets/identity-palm.png" alt="Símbolo de palmeira da identidade do casamento">
         <p class="eyebrow">Save the date</p>
@@ -66,9 +67,9 @@
     <section class="invitation-section" aria-labelledby="convite-title">
       <div class="invite-parents reveal"><p>Com a bênção de Deus<br>e de nossas famílias</p></div>
       <div class="invitation-card reveal" id="invitation-card">
-        <button class="seal" id="open-invite" type="button" aria-expanded="false" aria-controls="invite-copy"><span>S&amp;P</span><small>toque para abrir</small></button>
+        <button class="seal" id="open-invite" type="button" aria-expanded="false" aria-controls="invite-copy"><img src="assets/monogram-sp.png" alt="" aria-hidden="true"><small>toque para abrir</small></button>
         <div class="invite-copy" id="invite-copy">
-          <span class="mini-monogram dark">S&amp;P</span>
+          <img class="brand-monogram invite-monogram" src="assets/monogram-sp.png" alt="Monograma de Stefany e Pedro">
           <p class="eyebrow">Temos a alegria de convidar você</p>
           <h2 id="convite-title">Stefany <i>&amp;</i> Pedro</h2>
           <p>Para celebrar conosco a união de nossas vidas, diante do mar e de todos que fazem parte da nossa história.</p>
@@ -113,7 +114,7 @@
       <div class="venue-copy reveal">
         <p class="eyebrow">Onde será</p><h2 id="local-title">Casa Pier</h2><p class="venue-place">Espírito Santo</p><p>Um cenário de frente para o mar para celebrar o começo da nossa nova fase.</p>
         <a class="button button-wine" href="https://www.google.com/maps/search/?api=1&amp;query=Casa+Pier+Esp%C3%ADrito+Santo" target="_blank" rel="noopener">Abrir rota no mapa</a>
-        <a class="map-preview" href="https://www.google.com/maps/search/?api=1&amp;query=Casa+Pier+Esp%C3%ADrito+Santo" target="_blank" rel="noopener" aria-label="Abrir Casa Pier no Google Maps"><span class="map-pin">S&amp;P</span><span class="map-line line-a"></span><span class="map-line line-b"></span><span class="map-line line-c"></span><small>Toque para traçar a rota</small></a>
+        <a class="map-preview" href="https://www.google.com/maps/search/?api=1&amp;query=Casa+Pier+Esp%C3%ADrito+Santo" target="_blank" rel="noopener" aria-label="Abrir Casa Pier no Google Maps"><span class="map-pin"><img src="assets/monogram-sp.png" alt="" aria-hidden="true"></span><span class="map-line line-a"></span><span class="map-line line-b"></span><span class="map-line line-c"></span><small>Toque para traçar a rota</small></a>
       </div>
     </section>
 
@@ -155,13 +156,13 @@
   </main>
 
   <footer class="site-footer">
-    <img class="footer-palm" src="assets/identity-palm.png" alt=""><span class="footer-monogram">S <i>&amp;</i> P</span><p>18 · 04 · 2027</p><p>Casa Pier — Espírito Santo</p><p class="hand">Com amor, Stefany &amp; Pedro</p>
+    <img class="footer-palm" src="assets/identity-palm.png" alt=""><img class="footer-monogram" src="assets/monogram-sp.png" alt="Monograma de Stefany e Pedro"><p>18 · 04 · 2027</p><p>Casa Pier — Espírito Santo</p><p class="hand">Com amor, Stefany &amp; Pedro</p>
     <div class="footer-meta"><span>Um dia colorido para guardar</span><button class="admin-open" type="button" onclick="toggleAdmin()" aria-controls="painel-admin" aria-expanded="false">Acesso do casal</button></div>
   </footer>
 
   <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Foto ampliada" hidden><button class="lightbox-close" type="button" aria-label="Fechar foto">×</button><figure><img id="lightbox-image" src="" alt=""><figcaption id="lightbox-caption"></figcaption></figure></div>
   <div id="modal-pagamento" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="checkout-title" hidden>
-    <div class="modal-content"><button class="modal-close" type="button" onclick="fecharModal()" aria-label="Fechar pagamento">×</button><span class="mini-monogram dark">S&amp;P</span><h2 id="checkout-title">Obrigado pelo carinho</h2><p id="resumo-compra"></p>
+    <div class="modal-content"><button class="modal-close" type="button" onclick="fecharModal()" aria-label="Fechar pagamento">×</button><img class="brand-monogram checkout-monogram" src="assets/monogram-sp.png" alt="Monograma de Stefany e Pedro"><h2 id="checkout-title">Obrigado pelo carinho</h2><p id="resumo-compra"></p>
       <div id="area-pix"><p class="eyebrow">Pagamento via PIX</p><p>Escaneie o QR Code no aplicativo do seu banco.</p><img id="qr-code-img" class="qr-code-img" src="" alt="QR Code PIX"><p id="aviso-valor-pix"></p><p>Ou use o PIX Copia e Cola:</p><button class="button button-wine" type="button" onclick="copiarPix()">Copiar código PIX</button></div>
       <div id="area-cartao" hidden><p>Prefere pagar com cartão?</p><a id="btn-link-pagamento" class="button button-wine" href="#" target="_blank" rel="noopener">Pagar com cartão</a></div>
     </div>
