@@ -28,6 +28,13 @@ document.getElementById('open-invite').addEventListener('click',function(){const
 let observador;
 function observarEntradas(){const itens=document.querySelectorAll('.reveal:not([data-seen])');if(!('IntersectionObserver'in window)||reduzirMovimento){itens.forEach(item=>item.classList.add('visible'));return}if(!observador)observador=new IntersectionObserver(entradas=>entradas.forEach(entrada=>{if(entrada.isIntersecting){entrada.target.classList.add('visible');observador.unobserve(entrada.target)}}),{threshold:.12,rootMargin:'0px 0px -35px'});itens.forEach(item=>{item.dataset.seen='true';observador.observe(item)})}
 
+const paredePolaroides=document.getElementById('polaroid-wall');
+const polaroidesScroll=[...paredePolaroides.querySelectorAll('.polaroid')];
+let quadroPolaroides;
+function atualizarPolaroidesNoScroll(){quadroPolaroides=0;if(reduzirMovimento)return;const parede=paredePolaroides.getBoundingClientRect();const alcance=Math.max(innerHeight*.82,520);polaroidesScroll.forEach((foto,indice)=>{const topoOriginal=parede.top+foto.offsetTop;const progresso=Math.min(1,Math.max(0,(innerHeight*.74-topoOriginal)/alcance));const saida=Math.pow(progresso,1.7);const direcao=indice%2===0?-1:1;const distancia=innerWidth*.92+foto.offsetWidth;foto.style.setProperty('--drift-x',`${direcao*saida*distancia}px`);foto.style.setProperty('--drift-y',`${(indice%2===0?1:-1)*saida*58}px`);foto.style.setProperty('--drift-turn',`${direcao*saida*(13+indice*2)}deg`)})}
+function agendarPolaroides(){if(!quadroPolaroides)quadroPolaroides=requestAnimationFrame(atualizarPolaroidesNoScroll)}
+if(!reduzirMovimento){addEventListener('scroll',agendarPolaroides,{passive:true});addEventListener('resize',agendarPolaroides);requestAnimationFrame(atualizarPolaroidesNoScroll)}
+
 const lightbox=document.getElementById('lightbox');
 const lightboxImage=document.getElementById('lightbox-image');
 const lightboxCaption=document.getElementById('lightbox-caption');
