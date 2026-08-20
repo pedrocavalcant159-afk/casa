@@ -25,6 +25,31 @@ soundToggle.addEventListener('click',async()=>{try{heroVideo.muted=!heroVideo.mu
 
 document.getElementById('open-invite').addEventListener('click',function(){const card=document.getElementById('invitation-card');const aberto=card.classList.toggle('open');this.setAttribute('aria-expanded',String(aberto));if(aberto)criarPetalas(innerWidth/2,innerHeight/2,12)});
 
+document.querySelectorAll('.info-accordions details').forEach(topico=>{
+  const resumo=topico.querySelector('summary');
+  const conteudo=resumo.nextElementSibling;
+  resumo.addEventListener('click',evento=>{
+    evento.preventDefault();
+    if(topico.dataset.animating==='true')return;
+    const abrir=!topico.open;
+    if(reduzirMovimento){topico.open=abrir;return}
+    if(abrir)topico.open=true;
+    else topico.classList.add('is-closing');
+    const alturaInicial=abrir?resumo.offsetHeight:topico.offsetHeight;
+    const alturaFinal=abrir?resumo.offsetHeight+conteudo.offsetHeight:resumo.offsetHeight;
+    topico.dataset.animating='true';
+    topico.style.overflow='hidden';
+    const animacaoTopico=topico.animate({height:[`${alturaInicial}px`,`${alturaFinal}px`]},{duration:440,easing:'cubic-bezier(.22,.72,.2,1)'});
+    const animacaoConteudo=conteudo.animate({opacity:abrir?[0,1]:[1,0],transform:abrir?['translateY(-12px)','translateY(0)']:['translateY(0)','translateY(-10px)']},{duration:abrir?390:260,easing:'ease-out'});
+    Promise.all([animacaoTopico.finished,animacaoConteudo.finished]).then(()=>{
+      if(!abrir)topico.open=false;
+      topico.classList.remove('is-closing');
+      topico.style.removeProperty('overflow');
+      delete topico.dataset.animating;
+    }).catch(()=>{});
+  });
+});
+
 let observador;
 function observarEntradas(){const itens=document.querySelectorAll('.reveal:not([data-seen])');if(!('IntersectionObserver'in window)||reduzirMovimento){itens.forEach(item=>item.classList.add('visible'));return}if(!observador)observador=new IntersectionObserver(entradas=>entradas.forEach(entrada=>{if(entrada.isIntersecting){entrada.target.classList.add('visible');observador.unobserve(entrada.target)}}),{threshold:.12,rootMargin:'0px 0px -35px'});itens.forEach(item=>{item.dataset.seen='true';observador.observe(item)})}
 

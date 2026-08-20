@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&amp;family=Gilda+Display&amp;family=Nothing+You+Could+Do&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260819-29">
+  <link rel="stylesheet" href="styles.css?v=20260820-37">
 </head>
 <body>
   <a class="skip" href="#conteudo">Ir para o conteúdo</a>
@@ -19,7 +19,6 @@
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menu"><span></span><span></span></button>
     <div class="nav-links" id="nav-links">
       <a href="#save-the-date">Data</a>
-      <a href="#recados">Dos noivos</a>
       <a href="#informacoes">Informações</a>
       <a href="#galeria">Fotos</a>
       <a href="#presentes">Presentes</a>
@@ -39,7 +38,7 @@
       <div class="hero-shade"></div>
       <div class="hero-content reveal">
         <div class="hero-year"><span>Abril</span><img class="brand-monogram hero-monogram" src="assets/monogram-sp.png" alt="Monograma de Stefany e Pedro"><span>2027</span></div>
-        <h1><span>Stefany</span><i>&amp;</i><span>Pedro</span></h1>
+        <h1 class="hero-lettering" aria-label="Stefany e Pedro"><img src="assets/couple-lettering.svg" alt="" aria-hidden="true"></h1>
         <p class="hero-date">18 · 04 · 2027</p>
         <button class="sound-toggle" id="sound-toggle" type="button" aria-pressed="false" hidden><span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i></span><span id="sound-label">Ativar som</span></button>
       </div>
@@ -47,8 +46,10 @@
     </header>
 
     <section class="save-date paper-section" id="save-the-date" aria-label="Save the date">
+      <span class="film-doodle doodle-film" aria-hidden="true"></span>
       <img class="save-floral save-floral-left" src="assets/watercolor-wildflowers.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
       <img class="save-floral save-floral-right" src="assets/watercolor-wildflowers.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <figure class="polaroid scattered-polaroid scattered-save reveal" tabindex="0" data-lightbox="assets/photos/memory-04.webp"><img src="assets/photos/memory-04.webp" alt="Stefany e Pedro sorrindo durante um passeio" loading="lazy" decoding="async"></figure>
       <div class="save-inner reveal">
         <img class="save-monogram" src="assets/monogram-sp.png" alt="Monograma S e P">
         <div class="save-lettering"><img src="assets/save-the-date-lettering.svg" alt="Save the date"></div>
@@ -64,35 +65,22 @@
     </section>
 
     <section class="invitation-section" aria-labelledby="convite-title">
+      <span class="film-doodle doodle-camera" aria-hidden="true"></span>
       <div class="invite-parents reveal"><p>Com a bênção de Deus<br>e de nossas famílias</p></div>
       <div class="invitation-card reveal" id="invitation-card">
         <button class="seal" id="open-invite" type="button" aria-expanded="false" aria-controls="invite-copy"><img src="assets/monogram-sp.png" alt="" aria-hidden="true"><small>toque para abrir</small></button>
         <div class="invite-copy" id="invite-copy">
           <span class="invite-monogram-badge"><img class="brand-monogram invite-monogram" src="assets/monogram-sp.png" alt="Monograma de Stefany e Pedro"></span>
-          <p class="eyebrow">Temos a alegria de convidar você</p>
+          <p class="eyebrow">UM NOVO CAPÍTULO DA NOSSA HISTÓRIA ESTÁ PRESTES A COMEÇAR.</p>
           <h2 id="convite-title">Stefany <i>&amp;</i> Pedro</h2>
-          <p>Para celebrar conosco a união de nossas vidas, diante do mar e de todos que fazem parte da nossa história.</p>
+          <p>E queremos você ao nosso lado para celebrar esse momento tão especial.</p>
           <span class="invite-date">18 · abril · 2027</span>
         </div>
       </div>
-      <p class="hand invite-note">aperte o selo — guardamos uma surpresa aqui</p>
     </section>
 
-    <section class="couple-notes" id="recados" aria-labelledby="recados-title">
-      <div class="formal-invitation">
-        <div class="formal-families">
-          <p>Com carinho,<br>família de Stefany</p>
-          <img class="formal-monogram" src="assets/monogram-sp.png" alt="Monograma de Stefany e Pedro">
-          <p>Com carinho,<br>família de Pedro</p>
-        </div>
-        <p class="formal-blessing">Com a bênção de Deus<br>e de nossas famílias</p>
-        <h2 class="formal-couple-title" id="recados-title"><span>Stefany</span><i>&amp;</i><span>Pedro</span></h2>
-        <p class="formal-invite-text">Temos a honra de convidar você<br>para celebrar a união de nossas<br>vidas no casamento.</p>
-      </div>
-    </section>
-
-    <section class="details" id="informacoes" aria-labelledby="info-title">
-      <div class="details-header reveal"><p class="eyebrow">Tudo o que você precisa saber</p><h2 id="info-title">Nosso dia,<br>passo a passo.</h2><p>Preparamos este guia para você chegar, celebrar e aproveitar sem pressa.</p></div>
+    <section class="details" id="informacoes" aria-label="Informações do casamento">
+      <div class="details-header reveal"><p class="eyebrow">Tudo o que você precisa saber</p><p>Reunimos aqui as informações para você se organizar, curtir cada momento e se sentir à vontade do início ao fim.</p></div>
       <div class="details-grid">
         <div class="timeline reveal" aria-label="Cronograma do casamento">
           <h3>Cronograma</h3>
@@ -105,22 +93,24 @@
           <p class="schedule-note">Os horários podem receber pequenos ajustes mais perto da data.</p>
         </div>
         <div class="info-accordions reveal">
-          <details open><summary><span>01</span> Vestimenta <i>+</i></summary><div><h3>Esporte fino</h3><p>Para celebrar com elegância, o traje será esporte fino. Evite branco, tons claros, rosa-pink, amarelo-manteiga e laranja.</p><img class="dress-code-art" src="assets/dress-code-party-watercolor-v2.png" alt="Ilustração em aquarela de convidados dançando e celebrando com trajes esporte fino coloridos" loading="lazy" decoding="async"></div></details>
+          <details open><summary><span>01</span> Vestimenta <i>+</i></summary><div><h3>Esporte fino</h3><p>Para celebrar com elegância, o traje será esporte fino. Evite branco, tons claros, rosa-pink, amarelo-manteiga e laranja.</p><img class="dress-code-art" src="assets/dress-code-party-pencil-v4.png" alt="Desenho artesanal em lápis de seis convidados dançando com trajes esporte fino coloridos" loading="lazy" decoding="async"></div></details>
           <details><summary><span>02</span> Chegada <i>+</i></summary><div><h3>Venha um pouco antes</h3><p>Recomendamos chegar com 30 minutos de antecedência para estacionar, encontrar seu lugar e aproveitar a recepção.</p></div></details>
         </div>
       </div>
     </section>
 
     <section class="venue" id="local" aria-labelledby="local-title">
-      <div class="venue-photo reveal"><img src="assets/venue-watercolor-palms.png" alt="Aquarela tropical do local do casamento, com palmeiras, jardim e vista para o mar" loading="lazy" decoding="async"><span class="venue-tag">18 · 04 · 2027</span></div>
+      <div class="venue-photo reveal"><img src="assets/venue-watercolor-palms.png" alt="Aquarela tropical do local do casamento, com palmeiras, jardim e vista para o mar" loading="lazy" decoding="async"></div>
       <div class="venue-copy reveal">
         <p class="eyebrow">Onde será</p><h2 id="local-title">Casa Pier</h2><p class="venue-place">Espírito Santo</p><p>Um cenário de frente para o mar para celebrar o começo da nossa nova fase.</p>
         <a class="button button-wine" href="https://www.google.com/maps/search/?api=1&amp;query=Casa+Pier+Esp%C3%ADrito+Santo" target="_blank" rel="noopener">Abrir rota no mapa</a>
         <div class="map-preview"><iframe src="https://www.google.com/maps?q=Casa+Pier+Esp%C3%ADrito+Santo&amp;output=embed" title="Mapa da Casa Pier, Espírito Santo" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a class="map-overlay-link" href="https://www.google.com/maps/search/?api=1&amp;query=Casa+Pier+Esp%C3%ADrito+Santo" target="_blank" rel="noopener"><img src="assets/monogram-sp.png" alt="" aria-hidden="true"><span><strong>Casa Pier</strong><small>Abrir no Google Maps</small></span></a></div>
       </div>
+      <figure class="polaroid scattered-polaroid scattered-venue reveal" tabindex="0" data-lightbox="assets/photos/memory-07.webp"><img src="assets/photos/memory-07.webp" alt="Stefany e Pedro sorrindo juntos durante uma viagem" loading="lazy" decoding="async"></figure>
     </section>
 
     <section class="gallery" id="galeria" aria-labelledby="gallery-title">
+      <span class="film-doodle doodle-cherub" aria-hidden="true"></span>
       <div class="gallery-heading reveal"><p class="eyebrow">Nosso álbum</p><h2 id="gallery-title">Memórias<br>até aqui.</h2><p>Clique em uma polaroide para olhar mais de perto.</p></div>
       <div class="polaroid-wall" id="polaroid-wall">
         <img class="gallery-watercolor" src="assets/watercolor-wildflowers.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
@@ -128,8 +118,6 @@
         <figure class="polaroid p2" tabindex="0" data-lightbox="assets/photos/memory-05.webp"><img src="assets/photos/memory-05.webp" alt="Stefany e Pedro abraçados diante de uma paisagem" loading="lazy" decoding="async"></figure>
         <figure class="polaroid p3" tabindex="0" data-lightbox="assets/photos/memory-06.webp"><img src="assets/photos/memory-06.webp" alt="Stefany e Pedro sorrindo juntos durante um passeio" loading="lazy" decoding="async"></figure>
         <figure class="polaroid p4" tabindex="0" data-lightbox="assets/photos/memory-03.webp"><img src="assets/photos/memory-03.webp" alt="Stefany e Pedro sorrindo juntos em um momento descontraído" loading="lazy" decoding="async"></figure>
-        <figure class="polaroid p5" tabindex="0" data-lightbox="assets/photos/memory-04.webp"><img src="assets/photos/memory-04.webp" alt="Stefany e Pedro sorrindo durante um passeio" loading="lazy" decoding="async"></figure>
-        <figure class="polaroid p6" tabindex="0" data-lightbox="assets/photos/memory-07.webp"><img src="assets/photos/memory-07.webp" alt="Stefany e Pedro sorrindo juntos durante uma viagem" loading="lazy" decoding="async"></figure>
       </div>
     </section>
 
@@ -160,6 +148,7 @@
     </section>
 
     <section class="message-section" id="mensagem" aria-labelledby="message-title">
+      <span class="film-doodle doodle-sparkles" aria-hidden="true"></span>
       <div class="message-heading reveal"><img class="identity-palm" src="assets/identity-palm.png" alt="" aria-hidden="true"><p class="eyebrow">Um pedacinho seu por aqui</p><h2 id="message-title">Deixe uma mensagem<br>para os noivos.</h2><p>Vamos guardar cada palavra com muito carinho.</p></div>
       <form id="message-form" class="message-card reveal"><span class="tape" aria-hidden="true"></span><label for="message-name">Seu nome</label><input id="message-name" name="name" type="text" maxlength="120" required placeholder="Quem está escrevendo?"><label for="message-text">Sua mensagem</label><textarea id="message-text" name="message" maxlength="1200" required placeholder="Escreva aqui seu recado..."></textarea><input class="honeypot" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true"><button class="button button-wine" type="submit">Enviar com carinho</button><p class="form-status" id="message-status" role="status" aria-live="polite"></p></form>
     </section>
@@ -191,6 +180,6 @@
     </div>
   </section>
 
-  <script src="app.js?v=20260819-25"></script>
+  <script src="app.js?v=20260820-26"></script>
 </body>
 </html>
