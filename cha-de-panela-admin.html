@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&amp;family=Gilda+Display&amp;family=Nothing+You+Could+Do&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260821-52">
+  <link rel="stylesheet" href="styles.css?v=20260821-53">
 </head>
 <body class="shower-admin-page">
   <main id="conteudo">
@@ -68,6 +68,20 @@
 
           <section class="admin-card wide">
             <div class="admin-list-header">
+              <div><h2>Lista fechada de convidados do chá</h2><p class="admin-summary">Somente os nomes cadastrados aqui poderão confirmar presença no chá.</p></div>
+              <button class="button" type="button" id="btn-atualizar-convidados-cha" disabled>Atualizar</button>
+            </div>
+            <form id="form-add-convidado-cha" class="admin-guest-form">
+              <div><label for="convidado-nome-cha">Nome como está no convite</label><input type="text" id="convidado-nome-cha" maxlength="120" required></div>
+              <div><label for="convidado-limite-cha">Máximo de pessoas</label><input type="number" id="convidado-limite-cha" min="1" max="12" value="1" required></div>
+              <button class="button" id="btn-salvar-convidado-cha" type="submit" disabled>Adicionar à lista</button>
+            </form>
+            <p id="convidado-admin-status-cha" class="admin-status" role="status" aria-live="polite"></p>
+            <div id="lista-admin-convidados-cha"><p>Entre para carregar.</p></div>
+          </section>
+
+          <section class="admin-card wide">
+            <div class="admin-list-header">
               <div>
                 <h2>Confirmações do chá</h2>
                 <p id="resumo-rsvp-cha" class="admin-summary">Entre para carregar as confirmações.</p>
@@ -81,6 +95,6 @@
     </section>
   </main>
 
-  <script src="cha-de-panela-admin.js?v=20260821-3"></script>
+  <script src="cha-de-panela-admin.js?v=20260821-4"></script>
 </body>
 </html>

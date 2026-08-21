@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&amp;family=Gilda+Display&amp;family=Nothing+You+Could+Do&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260821-52">
+  <link rel="stylesheet" href="styles.css?v=20260821-53">
 </head>
 <body>
   <a class="skip" href="#conteudo">Ir para o conteúdo</a>
@@ -95,8 +95,15 @@
       <div class="rsvp-copy reveal">
         <h2 id="rsvp-title">Confirme sua presença.</h2><p>Esta confirmação é exclusiva para o chá de panela.</p>
         <form id="shower-rsvp-form" class="pretty-form">
-          <label for="shower-rsvp-name">Nome e sobrenome</label><input id="shower-rsvp-name" name="name" type="text" maxlength="120" required placeholder="Digite seu nome completo">
+          <label for="shower-rsvp-name">Nome e sobrenome</label>
+          <div class="guest-name-field">
+            <input id="shower-rsvp-name" name="name" type="text" autocomplete="off" maxlength="120" required placeholder="Comece a digitar como está no convite" aria-autocomplete="list" aria-controls="shower-guest-suggestions" aria-expanded="false">
+            <input id="shower-rsvp-guest-id" name="guest_id" type="hidden">
+            <div id="shower-guest-suggestions" class="guest-suggestions" role="listbox" hidden></div>
+          </div>
+          <small id="shower-rsvp-guest-limit" class="guest-limit" aria-live="polite">Digite pelo menos 3 letras e selecione seu nome.</small>
           <fieldset><legend>Você estará com a gente?</legend><label class="choice"><input type="radio" name="attendance" value="sim" required><span>Sim</span></label><label class="choice"><input type="radio" name="attendance" value="nao"><span>Não</span></label></fieldset>
+          <div id="shower-guest-count-field" hidden><label for="shower-guest-count">Quantas pessoas irão?</label><input id="shower-guest-count" name="guest_count" type="number" min="1" max="1" value="1"></div>
           <input class="honeypot" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
           <button class="button button-yellow" type="submit">Enviar confirmação</button><p class="form-status" id="shower-rsvp-status" role="status" aria-live="polite"></p>
         </form>
@@ -116,6 +123,6 @@
     </div>
   </div>
 
-  <script src="cha-de-panela.js?v=20260821-8"></script>
+  <script src="cha-de-panela.js?v=20260821-10"></script>
 </body>
 </html>
