@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&amp;family=Gilda+Display&amp;family=Nothing+You+Could+Do&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260821-51">
+  <link rel="stylesheet" href="styles.css?v=20260821-52">
 </head>
 <body>
   <a class="skip" href="#conteudo">Ir para o conteúdo</a>
@@ -186,7 +186,7 @@
       <div class="admin-header"><div><h2 id="admin-title">Painel do casal</h2><p>Convidados, PIX, confirmações e mensagens em um só lugar.</p></div><button class="button admin-close" type="button" onclick="toggleAdmin()">Fechar painel</button></div>
       <div class="admin-grid">
         <section class="admin-card wide"><h3>Acesso seguro</h3><div id="admin-desconectado"><p>Entre com o usuário administrador do Supabase.</p><form id="form-admin-login" class="admin-login"><div><label for="admin-email">E-mail</label><input type="email" id="admin-email" autocomplete="username" required></div><div><label for="admin-senha">Senha</label><input type="password" id="admin-senha" autocomplete="current-password" required></div><button class="button" type="submit">Entrar</button></form></div><div id="admin-conectado" class="admin-session" hidden><p>Conectado como <strong id="admin-email-logado"></strong></p><button class="button" type="button" onclick="sairAdmin()">Sair</button></div><p id="admin-auth-status" class="admin-status" role="status"></p></section>
-        <section class="admin-card"><h3>PIX global</h3><label for="config-pix">Código PIX Copia e Cola</label><input type="text" id="config-pix"><button class="button" id="btn-salvar-pix" type="button" onclick="salvarPix()" disabled>Salvar PIX</button><p id="pix-admin-status" class="admin-status"></p></section>
+        <section class="admin-card wide"><h3>PIX global</h3><p class="admin-summary">Cadastre sua chave para gerar automaticamente o QR Code e o código Copia e Cola com o valor escolhido.</p><div class="admin-pix-form"><div><label for="config-pix-type">Tipo da chave</label><select id="config-pix-type"><option value="telefone">Telefone</option><option value="cpf">CPF</option><option value="cnpj">CNPJ</option><option value="email">E-mail</option><option value="aleatoria">Chave aleatória</option><option value="copia">Código Copia e Cola completo</option></select></div><div><label for="config-pix">Chave PIX</label><input type="text" id="config-pix" autocomplete="off"><small id="config-pix-hint">Para telefone, informe o número com DDD; o +55 será acrescentado.</small></div><div><label for="config-pix-name">Nome do recebedor</label><input type="text" id="config-pix-name" maxlength="25" value="STEFANY E PEDRO"></div><div><label for="config-pix-city">Cidade do recebedor</label><input type="text" id="config-pix-city" maxlength="15" value="VITORIA"></div></div><button class="button" id="btn-salvar-pix" type="button" onclick="salvarPix()" disabled>Salvar PIX</button><p id="pix-admin-status" class="admin-status"></p></section>
         <section class="admin-card wide"><div class="admin-list-header"><h3>Lista fechada de convidados</h3><button class="button" type="button" onclick="carregarConvidadosAdmin()">Atualizar</button></div><form id="form-add-convidado" class="admin-guest-form"><div><label for="convidado-nome">Nome como está no convite</label><input type="text" id="convidado-nome" maxlength="120" required></div><div><label for="convidado-limite">Máximo de pessoas</label><input type="number" id="convidado-limite" min="1" max="12" value="1" required></div><button class="button" id="btn-salvar-convidado" type="submit" disabled>Adicionar à lista</button></form><p id="convidado-admin-status" class="admin-status" role="status"></p><div id="lista-admin-convidados"><p>Entre para carregar.</p></div></section>
         <section class="admin-card wide"><div class="admin-list-header"><h3>Confirmações</h3><button class="button" type="button" onclick="carregarRespostasAdmin()">Atualizar</button></div><p id="rsvp-admin-status" class="admin-status" role="status"></p><div id="lista-admin-rsvp"><p>Entre para carregar.</p></div></section>
         <section class="admin-card wide"><div class="admin-list-header"><h3>Mensagens recebidas</h3><button class="button" type="button" onclick="carregarMensagensAdmin()">Atualizar</button></div><p id="mensagem-admin-status" class="admin-status" role="status"></p><div id="lista-admin-mensagens"><p>Entre para carregar.</p></div></section>
@@ -195,6 +195,6 @@
   </section>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <script src="app.js?v=20260821-35"></script>
+  <script src="app.js?v=20260821-36"></script>
 </body>
 </html>

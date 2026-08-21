@@ -63,9 +63,11 @@ Ao publicar um presente, o site:
 Se uma loja bloquear a busca automática, o formulário aceita uma URL de imagem
 manual.
 
-O código PIX é armazenado em `public.site_settings`. A leitura da configuração
-`pix_key` é pública para permitir o pagamento pelos convidados, mas sua escrita
-é restrita aos administradores por RLS.
+A configuração da chave PIX é armazenada em `public.site_settings`. A leitura de
+`pix_key` é pública para permitir que o navegador gere o QR Code e o código Copia
+e Cola com o valor escolhido, mas sua escrita é restrita aos administradores por
+RLS. Para uma chave de telefone, o painel acrescenta automaticamente o código
+internacional `+55` quando o número é informado com DDD.
 
 ## Ativar o primeiro administrador
 
