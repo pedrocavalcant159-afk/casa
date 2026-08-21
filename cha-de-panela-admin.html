@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#20161a">
+  <meta name="description" content="Painel administrativo do chá de panela de Stefany e Pedro.">
+  <title>Administração do chá de panela — Stefany &amp; Pedro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&amp;family=Gilda+Display&amp;family=Nothing+You+Could+Do&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=20260821-48">
+</head>
+<body class="shower-admin-page">
+  <main id="conteudo">
+    <section class="admin-panel shower-admin-panel" aria-labelledby="admin-cha-title">
+      <div class="admin-inner">
+        <header class="admin-header">
+          <div>
+            <h1 id="admin-cha-title">Painel do chá de panela</h1>
+            <p>Acompanhe separadamente as confirmações de presença do chá.</p>
+          </div>
+        </header>
+
+        <div class="admin-grid">
+          <section class="admin-card wide">
+            <h2>Acesso seguro</h2>
+            <div id="admin-desconectado-cha">
+              <p>Use o mesmo e-mail e a mesma senha do painel do casamento.</p>
+              <form id="form-admin-login-cha" class="admin-login">
+                <div>
+                  <label for="admin-email-cha">E-mail</label>
+                  <input type="email" id="admin-email-cha" autocomplete="username" required>
+                </div>
+                <div>
+                  <label for="admin-senha-cha">Senha</label>
+                  <input type="password" id="admin-senha-cha" autocomplete="current-password" required>
+                </div>
+                <button class="button" type="submit">Entrar</button>
+              </form>
+            </div>
+            <div id="admin-conectado-cha" class="admin-session" hidden>
+              <p>Conectado como <strong id="admin-email-logado-cha"></strong></p>
+              <button class="button" type="button" id="btn-sair-admin-cha">Sair</button>
+            </div>
+            <p id="admin-auth-status-cha" class="admin-status" role="status" aria-live="polite"></p>
+          </section>
+
+          <section class="admin-card wide">
+            <div class="admin-list-header">
+              <div>
+                <h2>Confirmações do chá</h2>
+                <p id="resumo-rsvp-cha" class="admin-summary">Entre para carregar as confirmações.</p>
+              </div>
+              <button class="button" type="button" id="btn-atualizar-rsvp-cha" disabled>Atualizar</button>
+            </div>
+            <div id="lista-admin-rsvp-cha"><p>Entre para carregar.</p></div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="cha-de-panela-admin.js?v=20260821-1"></script>
+</body>
+</html>

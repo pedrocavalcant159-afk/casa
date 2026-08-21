@@ -3,6 +3,33 @@
 Site estático conectado ao Supabase para exibir e administrar a lista de presentes,
 receber confirmações de presença e guardar mensagens dos convidados.
 
+## Chá de panela
+
+A página `cha-de-panela.html` reutiliza o vídeo, a identidade, o local e o PIX do
+casamento. A lista de presentes fica disponível somente nessa página. No site do
+casamento, o mesmo PIX aparece em uma área de contribuição livre: o convidado
+escolhe o valor, gera um QR Code e também pode copiar o código. As confirmações do
+chá ficam em uma tabela separada no Supabase.
+
+A página é acessada diretamente por `cha-de-panela.html`, sem login, senha ou código
+individual. Ela não aparece no menu do casamento e não oferece link de retorno ao
+`index.html`. O convidado informa o próprio nome ao confirmar a presença.
+
+As confirmações do chá são administradas separadamente pelo endereço direto
+`cha-de-panela-admin.html`. Esse painel usa exatamente o mesmo usuário e senha do
+Supabase e a mesma autorização em `public.site_admins` usada pelo painel do
+casamento. Ao navegar entre os dois painéis na mesma aba, a sessão já iniciada é
+reaproveitada. O painel do casamento não exibe as confirmações do chá.
+
+Para ativar o formulário, aplique a migração
+`supabase/migrations/20260821130000_add_shower_guest_list_and_rsvp.sql` no projeto
+Supabase. Enquanto a migração não for aplicada, a página pode ser visualizada
+localmente, mas não registra confirmações.
+
+Como o site atual é publicado como conteúdo estático no GitHub Pages, alguém que
+saiba o endereço do `index.html` ainda pode digitá-lo manualmente. Impedir também
+esse acesso exige uma barreira na hospedagem antes de servir o arquivo.
+
 ## Vídeo de abertura
 
 O site começa com um vídeo genérico gratuito da Pexels salvo em
