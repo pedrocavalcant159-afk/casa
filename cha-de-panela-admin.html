@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#20161a">
+  <meta name="theme-color" content="#f3e7d1">
   <meta name="description" content="Painel administrativo do chá de panela de Stefany e Pedro.">
   <title>Administração do chá de panela — Stefany &amp; Pedro</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&amp;family=Gilda+Display&amp;family=Nothing+You+Could+Do&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260821-48">
+  <link rel="stylesheet" href="styles.css?v=20260821-51">
 </head>
 <body class="shower-admin-page">
   <main id="conteudo">
@@ -18,7 +18,7 @@
         <header class="admin-header">
           <div>
             <h1 id="admin-cha-title">Painel do chá de panela</h1>
-            <p>Acompanhe separadamente as confirmações de presença do chá.</p>
+            <p>Gerencie os presentes e as confirmações de presença do chá.</p>
           </div>
         </header>
 
@@ -48,6 +48,26 @@
 
           <section class="admin-card wide">
             <div class="admin-list-header">
+              <div><h2 id="titulo-form-presente">Lista de presentes do chá</h2><p class="admin-summary">Cadastre, edite ou exclua os itens exibidos na página do chá.</p></div>
+              <button class="button" type="button" id="btn-atualizar-presentes-cha" disabled>Atualizar</button>
+            </div>
+            <form id="form-add-presente">
+              <div class="admin-gift-form">
+                <div><label for="nome-prod">Nome</label><input type="text" id="nome-prod" required></div>
+                <div><label for="valor-prod">Valor total</label><input type="number" id="valor-prod" min="0.01" step="0.01" required></div>
+                <div><label for="cotas-prod">Cotas</label><input type="number" id="cotas-prod" min="1" required></div>
+                <div><label for="link-pgto-prod">Link do produto</label><input type="url" id="link-pgto-prod"></div>
+                <div class="wide-field"><label for="imagem-prod">Imagem manual</label><input type="url" id="imagem-prod"></div>
+              </div>
+              <div id="image-preview-admin" class="image-preview-admin" hidden><img id="image-preview-admin-img" src="" alt="Prévia"><span id="image-preview-admin-text"></span></div>
+              <div class="admin-form-actions"><button class="button" id="btn-salvar-presente" type="submit" disabled>Publicar no chá</button><button class="button button-secondary" id="btn-cancelar-edicao" type="button" hidden>Cancelar</button></div>
+              <p id="presente-admin-status" class="admin-status" role="status" aria-live="polite"></p>
+            </form>
+            <div id="lista-admin-presentes"><p>Entre para carregar.</p></div>
+          </section>
+
+          <section class="admin-card wide">
+            <div class="admin-list-header">
               <div>
                 <h2>Confirmações do chá</h2>
                 <p id="resumo-rsvp-cha" class="admin-summary">Entre para carregar as confirmações.</p>
@@ -61,6 +81,6 @@
     </section>
   </main>
 
-  <script src="cha-de-panela-admin.js?v=20260821-1"></script>
+  <script src="cha-de-panela-admin.js?v=20260821-3"></script>
 </body>
 </html>

@@ -48,8 +48,10 @@ Vídeo atual: [Couple Walking on the Beach](https://www.pexels.com/video/couple-
 
 ## Administração dos presentes
 
-O painel **Acesso do casal** usa Supabase Auth. Somente usuários presentes em
-`public.site_admins` podem criar, editar ou excluir presentes e alterar o PIX.
+O gerenciamento da lista fica em `cha-de-panela-admin.html`. Esse painel usa
+Supabase Auth, e somente usuários presentes em `public.site_admins` podem criar,
+editar ou excluir presentes. O PIX continua configurado no painel do casamento,
+com a mesma conta administrativa.
 
 Ao publicar um presente, o site:
 
